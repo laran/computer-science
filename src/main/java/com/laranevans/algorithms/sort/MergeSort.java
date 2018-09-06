@@ -6,14 +6,14 @@ import java.util.Objects;
 
 /**
  * Merge sort that supports both top-down and bottom-up approaches.
+ * Does not use static methods so that generics can be utilized.
  *
  * @param <T>
  */
 public class MergeSort<T extends Comparable> {
 
 	static class TopDownHelper<T extends Comparable> {
-
-		void sortTopDown(T[] origin) {
+		void sort(T[] origin) {
 			if (Objects.isNull(origin) || origin.length < 2)
 				return;
 
@@ -25,14 +25,14 @@ public class MergeSort<T extends Comparable> {
 			T[] right = Arrays.copyOfRange(origin, mid, origin.length);
 
 			// Sort each half
-			sortTopDown(left);
-			sortTopDown(right);
+			sort(left);
+			sort(right);
 
 			// Merge the results
-			mergeTopDown(left, right, origin);
+			merge(left, right, origin);
 		}
 
-		private void mergeTopDown(T[] left, T[] right, T[] origin) {
+		private void merge(T[] left, T[] right, T[] origin) {
 			int iLeft = 0, iRight = 0, iOrigin = 0;
 			while (iLeft < left.length && iRight < right.length) {
 				if (left[iLeft].compareTo(right[iRight]) < 1) {
@@ -51,9 +51,7 @@ public class MergeSort<T extends Comparable> {
 	}
 
 	static class BottomUpHelper<T extends Comparable> {
-		// Bottom-up approach
-
-		void sortBottomUp(T[] origin) {
+		void sort(T[] origin) {
 			if (Objects.isNull(origin))
 				return;
 
@@ -61,13 +59,13 @@ public class MergeSort<T extends Comparable> {
 			T[] aux = (T[]) new Comparable[n];
 			for (int len = 1; len < n; len *= 2) {
 				for (int lo = 0; lo < n - len; lo += len*2) {
-					mergeBottomUp(origin, aux, lo, lo + len - 1, Math.min(lo + len + len -1, n - 1));
+					merge(origin, aux, lo, lo + len - 1, Math.min(lo + len + len -1, n - 1));
 				}
 			}
 
 		}
 
-		private void mergeBottomUp(T[] a, T[] aux, int lo, int mid, int hi) {
+		private void merge(T[] a, T[] aux, int lo, int mid, int hi) {
 			for (int k = lo; k <= hi; k++) {
 				aux[k] = a[k];
 			}
@@ -99,6 +97,11 @@ public class MergeSort<T extends Comparable> {
 		return true;
 	}
 
+	/**
+	 * Sort in place using MergeSort.
+	 *
+	 * @param origin
+	 */
 	public void sort(T[] origin) {
 		// Sort top-down by default. It's more standard.
 		sort(origin, true);
@@ -106,9 +109,9 @@ public class MergeSort<T extends Comparable> {
 	
 	public void sort(T[] origin, boolean topDown) {
 		if (topDown) {
-			topDownHelper.sortTopDown(origin);
+			topDownHelper.sort(origin);
 		} else {
-			bottomUpHelper.sortBottomUp(origin);
+			bottomUpHelper.sort(origin);
 		}
 
 		assert isSorted(origin);
