@@ -62,7 +62,6 @@ public class MergeSort<T extends Comparable> {
 					merge(origin, aux, lo, lo + len - 1, Math.min(lo + len + len -1, n - 1));
 				}
 			}
-
 		}
 
 		private void merge(T[] a, T[] aux, int lo, int mid, int hi) {
