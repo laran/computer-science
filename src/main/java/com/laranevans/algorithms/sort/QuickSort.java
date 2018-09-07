@@ -31,7 +31,7 @@ public class QuickSort {
 
 			// increment the lhs pointer until we encounter an element >= the pivot
 			while (input[++i].compareTo(value) < 0) {
-				if ( i == hi) {
+				if (i == hi) {
 					break;
 				}
 			}
