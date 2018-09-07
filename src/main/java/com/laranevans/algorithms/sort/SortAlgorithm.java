@@ -6,5 +6,5 @@ package com.laranevans.algorithms.sort;
  * @param <V>
  */
 public interface SortAlgorithm<V extends Comparable> {
-	void sort(V[] input);
+	void sort(V[] a);
 }
