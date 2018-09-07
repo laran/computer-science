@@ -20,5 +20,4 @@ public class QuickSortTest extends BaseSortAlgorithmTest {
 			new Integer[]{2, 5, 3, 7, 9, 6, 3},
 			new Integer[]{2, 3, 3, 5, 6, 7, 9});
 	}
-
 }
