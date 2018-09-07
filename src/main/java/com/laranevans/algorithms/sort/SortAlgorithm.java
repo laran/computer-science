@@ -1,5 +1,10 @@
 package com.laranevans.algorithms.sort;
 
-public interface SortAlgorithm<T extends Comparable> {
-	void sort(T[] input);
+/**
+ * Standard interface for all types of sort.
+ *
+ * @param <V>
+ */
+public interface SortAlgorithm<V extends Comparable> {
+	void sort(V[] input);
 }

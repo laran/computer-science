@@ -1,64 +1,64 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.algorithms.sort;
 
-public class QuickSort<T extends Comparable> extends BaseSortAlgorithm<T> {
+public class QuickSort<V extends Comparable> extends BaseSortAlgorithm<V> {
 
 	@Override
-	public void sort(T[] origin) {
-		sort(origin, 0, origin.length - 1);
+	public void sort(V[] a) {
+		sort(a, 0, a.length - 1);
 
-		assert isSorted(origin);
-		showResults(origin);
+		assert isSorted(a);
+		showResults(a);
 	}
 
-	private void sort(T[] input, int lo, int hi) {
+	private void sort(V[] a, int lo, int hi) {
 		if (hi <= lo) {
 			return;
 		}
 
-		int p = partition(input, lo, hi); // partition to identify the pivot
-		sort(input, lo, p - 1); // sort the lhs
-		sort(input, p + 1, hi); // sort the rhs
+		int p = partition(a, lo, hi); // partition to identify the pivot
+		sort(a, lo, p - 1); // sort the lhs
+		sort(a, p + 1, hi); // sort the rhs
 	}
 
-	private int partition(T[] input, int lo, int hi) {
-		int i = lo;
-		int j = hi + 1;
+	private int partition(V[] a, int lo, int hi) {
+		int i = lo; // the lhs index
+		int ip = hi + 1; // the pivot index
 
 		// Start by choosing the first element as the initial pivot.
-		T value = input[lo];
+		V pivot = a[lo];
 
 		while (true) {
 
 			// increment the lhs pointer until we encounter an element >= the pivot
-			while (isLessThan(input[++i], value)) {
-				if (i == hi) {
+			while (isLessThan(a[++i], pivot)) {
+				if (i >= hi) {
 					break;
 				}
 			}
 
 			// decrement the rhs pointer until we encounter an element >= the pivot
-			while (isLessThan(value, input[--j])) {
-				if (j == lo) {
+			while (isLessThan(pivot, a[--ip])) {
+				if (ip <= lo) {
 					break;
 				}
 			}
 
-			// check for when the lhs and rhs pointers cross
-			if (i >= j) {
+			// we're done when the lhs and rhs pointers cross
+			if (i >= ip) {
 				break;
 			}
 
 			// exchange the elements at the lhs and rhs pointers respectively
-			swap(input, i, j);
+			swap(a, i, ip);
 
 		}
 
 		// Swap the first element into the pivot position.
-		swap(input, lo, j);
+		swap(a, lo, ip);
 
 		// return the pivot position
-		return j;
+		return ip;
 	}
 
 }

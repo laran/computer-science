@@ -6,53 +6,52 @@ import java.util.Objects;
 
 /**
  * Merge sort from the top-down.
- * Does not use static methods so that generics can be utilized.
  *
- * @param <T>
+ * @param <V>
  */
-public class MergeSortTopDown<T extends Comparable> extends BaseSortAlgorithm<T> {
+public class MergeSortTopDown<V extends Comparable> extends BaseSortAlgorithm<V> {
 
 	@Override
-	public void sort(T[] origin) {
-		doSort(origin);
+	public void sort(V[] a) {
+		doSort(a);
 
-		assert isSorted(origin);
-		showResults(origin);
+		assert isSorted(a);
+		showResults(a);
 	}
 
-	private void doSort(T[] origin) {
-		if (Objects.isNull(origin) || origin.length < 2)
+	private void doSort(V[] a) {
+		if (Objects.isNull(a) || a.length < 2)
 			return;
 
 		// Split the list in half
-		int mid = origin.length / 2;
+		int mid = a.length / 2;
 
 		// System.arraycopy would be an alternative way to do this
-		T[] left = Arrays.copyOfRange(origin, 0, mid);
-		T[] right = Arrays.copyOfRange(origin, mid, origin.length);
+		V[] left = Arrays.copyOfRange(a, 0, mid);
+		V[] right = Arrays.copyOfRange(a, mid, a.length);
 
 		// SortAlgorithm each half
 		doSort(left);
 		doSort(right);
 
 		// Merge the results
-		merge(left, right, origin);
+		merge(left, right, a);
 	}
 
-	private void merge(T[] left, T[] right, T[] origin) {
-		int iLeft = 0, iRight = 0, iOrigin = 0;
+	private void merge(V[] left, V[] right, V[] a) {
+		int iLeft = 0, iRight = 0, iA = 0;
 		while (iLeft < left.length && iRight < right.length) {
-			if (left[iLeft].compareTo(right[iRight]) < 1) {
-				origin[iOrigin++] = left[iLeft++];
+			if (isLessThanOrEqualTo(left[iLeft], right[iRight])) {
+				set(a, iA++, left, iLeft++);
 			} else {
-				origin[iOrigin++] = right[iRight++];
+				set(a, iA++, right, iRight++);
 			}
 		}
 		while (iLeft < left.length) {
-			origin[iOrigin++] = left[iLeft++];
+			set(a, iA++, left, iLeft++);;
 		}
-		while (iRight < right.length) { // this was left.length
-			origin[iOrigin++] = right[iRight++];
+		while (iRight < right.length) {
+			set(a, iA++, right, iRight++);
 		}
 	}
 }
