@@ -1,17 +1,11 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.algorithms.greedy;
 
-import java.util.Random;
+import com.laranevans.algorithms.BaseAlgorithm;
 
-public class FisherYatesShuffle {
+public class FisherYatesShuffle<V extends Comparable> extends BaseAlgorithm {
 
-	private static Random random = new Random();
-
-	private int getRandom(int floor, int ceiling) {
-		return random.nextInt((ceiling - floor) + 1) + floor;
-	}
-
-	public void shuffle(Object[] a) {
+	public void shuffle(V[] a) {
 		if (a.length <= 1) {
 			return;
 		}
@@ -22,12 +16,6 @@ public class FisherYatesShuffle {
 				swap(a, i, r);
 			}
 		}
-	}
-
-	protected void swap(Object[] a, int i, int j) {
-		Object swap = a[i];
-		a[i] = a[j];
-		a[j] = swap;
 	}
 
 }
