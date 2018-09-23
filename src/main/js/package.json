@@ -1,0 +1,16 @@
+{
+  "name": "algorithms",
+  "version": "1.0.0",
+  "description": "Implementations of various fundamental data-structure algorithms",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest **/*.spec.js",
+    "test:watch": "jest **/*.spec.js --watch"
+  },
+  "author": "Laran Evans <laran@laranevans.com> (http://www.laranevans.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "yarn": "^1.9.4"
+  }
+}
