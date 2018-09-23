@@ -1,3 +1,6 @@
+// helper functions
+// ---
+
 var isUndefined = function(o) {
 	return typeof o === 'undefined';
 };
@@ -6,13 +9,16 @@ var isEqualTo = function(o, p) {
 	return o === p;
 };
 
+// classes
+// ---
+
 var Node = function (value, left, right) {
 	this.value = value;
 	this.left = left;
 	this.right = right;
 };
 
-// for DFS search
+// Enum of the allowed orders for DFS search
 Node.Orders = {
 	PRE: 'pre',
 	IN: 'in',
@@ -116,17 +122,20 @@ Node.prototype.bfs = function (evaluate, visit) {
 	}
 };
 
+// Binary Tree class
+// ---
+
 var BinaryTree = function (...values) {
 	this.root = new Node();
 	if (values && values.length > 0) {
 		values.forEach((v) => {
-			this.insert(v);
+			this.add(v);
 		});
 	}
 	return this;
 };
 
-BinaryTree.prototype.insert = function (...values) {
+BinaryTree.prototype.add = function (...values) {
 	var i;
 	for (i = 0; i < values.length; i++) {
 		var value = values[i];
@@ -194,7 +203,7 @@ BinaryTree.prototype.remove = function (value) {
 			throw "Cannot unambiguosly remove node with two children.";
 		} else {
 
-			// EITHER left OR right child exists. Reparent the existing child.
+			// EITHER left OR right child exists. Re-parent the existing child.
 			if (isUndefined(parent.right)
 				|| !isUndefined(parent.left)
 				&& isEqualTo(parent.left.value, toDelete.value)) {

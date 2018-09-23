@@ -3,14 +3,14 @@ const {BinaryTree, Node} = require('./binary-tree');
 describe('Binary Tree', () => {
 	test('supports vararg inserts', () => {
 		var tree = new BinaryTree();
-		tree.insert(1, 2, 3, 4, 5);
+		tree.add(1, 2, 3, 4, 5);
 		expect(tree.root).not.toBeUndefined();
 		expect(tree.root.value).toBe(1);
 	});
 
 	test('properly handles duplicate value insertion', () => {
 		var tree = new BinaryTree();
-		tree.insert(1);
+		tree.add(1);
 
 		expect(tree.root.value).toBe(1);
 		expect(tree.root.left).toBe(undefined);
@@ -19,7 +19,7 @@ describe('Binary Tree', () => {
 
 	test('inserts in the correct order', () => {
 		var tree = new BinaryTree();
-		tree.insert(1).insert(2).insert(3);
+		tree.add(1).add(2).add(3);
 
 		expect(tree.root.value).toBe(1);
 		expect(tree.root.left).toBe(undefined);
@@ -29,7 +29,7 @@ describe('Binary Tree', () => {
 		expect(tree.root.right.right.left).toBe(undefined);
 
 		tree = new BinaryTree();
-		tree.insert(2).insert(3).insert(1);
+		tree.add(2).add(3).add(1);
 		expect(tree.root.value).toBe(2);
 		expect(tree.root.left.value).toBe(1);
 		expect(tree.root.right.value).toBe(3);
@@ -37,7 +37,7 @@ describe('Binary Tree', () => {
 
 	test('can DFS in order', () => {
 		var tree = new BinaryTree();
-		tree.insert(2, 3, 1);
+		tree.add(2, 3, 1);
 
 		var find = function(node) {
 			if (node.value === this.needle) {
