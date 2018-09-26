@@ -4,12 +4,15 @@
   "description": "Implementations of various fundamental data-structure algorithms",
   "main": "index.js",
   "scripts": {
-    "test": "jest **/*.spec.js",
-    "test:watch": "jest **/*.spec.js --watch"
+    "test": "jest structures/*.spec.js --watchAll"
   },
   "author": "Laran Evans <laran@laranevans.com> (http://www.laranevans.com/)",
   "license": "MIT",
+  "jest": {
+    "verbose": true
+  },
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
     "jest": "^23.6.0",
     "yarn": "^1.9.4"
   }

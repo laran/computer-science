@@ -1,16 +1,14 @@
-const {BinaryTree, Node} = require('./binary-tree');
+import BinaryTree, {Node} from './binary-tree';
 
 describe('Binary Tree', () => {
 	test('supports vararg inserts', () => {
-		var tree = new BinaryTree();
-		tree.add(1, 2, 3, 4, 5);
+		var tree = new BinaryTree(1, 2, 3, 4, 5);
 		expect(tree.root).not.toBeUndefined();
 		expect(tree.root.value).toBe(1);
 	});
 
 	test('properly handles duplicate value insertion', () => {
-		var tree = new BinaryTree();
-		tree.add(1);
+		var tree = new BinaryTree(1);
 
 		expect(tree.root.value).toBe(1);
 		expect(tree.root.left).toBe(undefined);
@@ -18,8 +16,7 @@ describe('Binary Tree', () => {
 	});
 
 	test('inserts in the correct order', () => {
-		var tree = new BinaryTree();
-		tree.add(1).add(2).add(3);
+		var tree = new BinaryTree(1, 2, 3);
 
 		expect(tree.root.value).toBe(1);
 		expect(tree.root.left).toBe(undefined);
@@ -28,16 +25,20 @@ describe('Binary Tree', () => {
 		expect(tree.root.right.right.value).toBe(3);
 		expect(tree.root.right.right.left).toBe(undefined);
 
-		tree = new BinaryTree();
-		tree.add(2).add(3).add(1);
+		tree = new BinaryTree(2, 3, 1);
 		expect(tree.root.value).toBe(2);
 		expect(tree.root.left.value).toBe(1);
 		expect(tree.root.right.value).toBe(3);
 	});
 
 	test('can DFS in order', () => {
-		var tree = new BinaryTree();
-		tree.add(2, 3, 1);
+		var tree = new BinaryTree(20, 30, 10, 15, 25);
+
+		//           20
+		//        /     \
+		//      10      30
+		//       \      /
+		//       15   25
 
 		var find = function(node) {
 			if (node.value === this.needle) {
@@ -50,20 +51,20 @@ describe('Binary Tree', () => {
 		};
 
 		var scope = {needle: 1, path: []};
-		tree.root.dfs(find, Node.Orders.PRE, visit.bind(scope));
-		expect(scope.path).toEqual([2, 1, 3]);
+		tree.root.dfs(find.bind(scope), Node.Orders.PRE, visit.bind(scope));
+		expect(scope.path).toEqual([20, 10, 15, 30, 25]);
 
 		scope = {needle: 1, path: []};
-		tree.root.dfs(find, Node.Orders.IN, visit.bind(scope));
-		expect(scope.path).toEqual([1, 2, 3]);
+		tree.root.dfs(find.bind(scope), Node.Orders.IN, visit.bind(scope));
+		expect(scope.path).toEqual([10, 15, 20, 25, 30]);
 
 		scope = {needle: 1, path: []};
-		tree.root.dfs(find, Node.Orders.POST, visit.bind(scope));
-		expect(scope.path).toEqual([1, 3, 2]);
+		tree.root.dfs(find.bind(scope), Node.Orders.POST, visit.bind(scope));
+		expect(scope.path).toEqual([15, 10, 25, 30, 20]);
 
 		scope = {needle: 1, path: []};
-		tree.root.dfs(find, Node.Orders.IN, visit.bind(scope));
-		expect(scope.path).toEqual([1, 2, 3]);
+		tree.root.dfs(find.bind(scope), Node.Orders.IN, visit.bind(scope));
+		expect(scope.path).toEqual([10, 15, 20, 25, 30]);
 	});
 
 	test('can BFS in order', () => {
@@ -79,7 +80,7 @@ describe('Binary Tree', () => {
 
 		var find = function(needle, tree, expected) {
 			var scope = {needle: needle, path: []};
-			tree.root.bfs(evaluate, visit.bind(scope));
+			tree.root.bfs(evaluate.bind(scope), visit.bind(scope));
 			expect(scope.path).toEqual(expected);
 		};
 
