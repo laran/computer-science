@@ -1,5 +1,5 @@
 /* (C) Copyright 2017-2018 Laran Evans */
-package com.laranevans.algorithms.greedy;
+package com.laranevans.dynamic;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -16,5 +16,4 @@ public class FibonacciTest {
 		Assert.assertThat(Fibonacci.fib(4), Matchers.equalTo(3L));
 		Assert.assertThat(Fibonacci.fib(5), Matchers.equalTo(5L));
 	}
-
 }

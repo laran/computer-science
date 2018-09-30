@@ -1,5 +1,5 @@
 /* (C) Copyright 2017-2018 Laran Evans */
-package com.laranevans.algorithms.greedy;
+package com.laranevans.dynamic;
 
 /**
  * This is a dynamic programming problem.
@@ -40,5 +40,4 @@ public class Fibonacci {
 
 		return cache[n];
 	}
-
 }
