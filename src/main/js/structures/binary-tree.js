@@ -1,4 +1,4 @@
-import {isEqualTo, isUndefined} from './helpers';
+import {isEqualTo, isUndefined} from '@laran/readable-helpers';
 
 export class Node {
 	constructor(value, left, right) {

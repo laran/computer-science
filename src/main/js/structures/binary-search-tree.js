@@ -1,5 +1,5 @@
 // https://medium.freecodecamp.org/all-you-need-to-know-about-tree-data-structures-bceacb85490c
-const {isUndefined, isEqual} = require('./helpers');
+import {isEqualTo, isUndefined} from '@laran/readable-helpers';
 
 var Node = function (value, left, right) {
 	this.value = value;
