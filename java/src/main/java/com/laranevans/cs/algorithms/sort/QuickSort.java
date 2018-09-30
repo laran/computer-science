@@ -2,14 +2,15 @@
 package com.laranevans.cs.algorithms.sort;
 
 /**
- * This is an implementation of QuickSort algorithm as presented in The Algorithm Design Manual by
- * Steven Skiena. This version is shorter and easier to remember than the previous version I wrote
- * (see the version history on this file for the previous algorithm).
  *
  * @param <V>
  */
 public class QuickSort<V extends Comparable> extends BaseSortAlgorithm<V> {
 
+	/**
+	 *
+	 * @param a
+	 */
 	@Override
 	public void sort(V[] a) {
 		sort(a, 0, a.length - 1);
@@ -27,16 +28,15 @@ public class QuickSort<V extends Comparable> extends BaseSortAlgorithm<V> {
 	}
 
 	private int partition(V[] a, int lo, int hi) {
-		int p = hi;
-		int fh = lo; // the pivot index
+		int p = lo; // the pivot index
 
 		for (int i = lo; i < hi; i++) {
-			if (isLessThan(a[i], a[p])) {
-				swap(a, i, fh++);
+			if (isLessThan(a[i], a[hi])) {
+				swap(a, i, p++);
 			}
 		}
-		swap(a, p, fh);
-		return fh;
+		swap(a, hi, p);
+		return p;
 	}
 
 }
