@@ -13,7 +13,6 @@ package com.laranevans.dynamic;
  *
  * - better use of memory because it can be initialized up-front
  * - no need for recursion, so less memory consumed by the call-stack.
- *
  */
 public class Fibonacci {
 
