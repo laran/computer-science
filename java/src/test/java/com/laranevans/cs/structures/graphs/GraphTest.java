@@ -10,7 +10,7 @@ public class GraphTest {
 
 	@Test
 	public void shouldAddNodesProperly() {
-		String a = "A", b = "b", c = "c", d = "d";
+		String a = "a", b = "b", c = "c", d = "d";
 
 		Graph graph = new Graph()
 			.addNode(new GraphNode(a))

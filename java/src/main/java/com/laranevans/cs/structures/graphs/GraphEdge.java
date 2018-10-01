@@ -8,7 +8,7 @@ public class GraphEdge {
 	private Map<String, String> properties;
 
 	public GraphEdge() {
-		this.properties = new HashMap<>();
+		this(new HashMap<>());
 	}
 
 	public GraphEdge(Map<String, String> properties) {
