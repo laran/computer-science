@@ -24,7 +24,7 @@ import java.util.*;
  *  -
  *  - Determine the shortest route
  *  - ---
- *  - Router route = topology.shortestRouteBetween(startingNodeId, endingNodeId)
+ *  - Route route = topology.shortestRouteBetween(startingNodeId, endingNodeId)
  *  -
  *  - The shortest route = route.getSteps()
  *  - The distance from startingNodeId to endingNodeId = route.getDistance()
