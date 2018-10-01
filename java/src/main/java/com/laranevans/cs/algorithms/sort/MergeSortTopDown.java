@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Merge sort from the top-down.
  *
- * @param <V>
+ * @param &lt;V&gt;
  */
 public class MergeSortTopDown<V extends Comparable> extends BaseSortAlgorithm<V> {
 

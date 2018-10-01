@@ -3,7 +3,7 @@ package com.laranevans.cs.algorithms.sort;
 
 /**
  *
- * @param <V>
+ * @param &lt;V&gt;
  */
 public class QuickSort<V extends Comparable> extends BaseSortAlgorithm<V> {
 

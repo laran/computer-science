@@ -5,6 +5,10 @@ import com.laranevans.cs.algorithms.BaseAlgorithm;
 
 import java.util.Objects;
 
+/**
+ *
+ * @param &lt;V&gt;
+ */
 public class BinarySearch <V extends Comparable> extends BaseAlgorithm<V> {
 
 	public int search(V[] a, V o) {

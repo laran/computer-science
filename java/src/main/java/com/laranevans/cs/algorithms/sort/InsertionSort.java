@@ -1,6 +1,10 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.algorithms.sort;
 
+/**
+ *
+ * @param &lt;V&gt;
+ */
 public class InsertionSort<V extends Comparable> extends BaseSortAlgorithm<V> {
 
 	@Override

@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Algorithms that use additional memory don't swap. Instead they "set" values in temp storage.
  * So "sets" and "swaps" are tracked separately.
  *
- * @param <V>
+ * @param &lt;V&gt;
  */
 public abstract class BaseAlgorithm<V extends Comparable> {
 

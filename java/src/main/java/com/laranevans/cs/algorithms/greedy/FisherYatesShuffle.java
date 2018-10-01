@@ -3,6 +3,10 @@ package com.laranevans.cs.algorithms.greedy;
 
 import com.laranevans.cs.algorithms.BaseAlgorithm;
 
+/**
+ *
+ * @param &lt;V&gt;
+ */
 public class FisherYatesShuffle<V extends Comparable> extends BaseAlgorithm {
 
 	public void shuffle(V[] a) {

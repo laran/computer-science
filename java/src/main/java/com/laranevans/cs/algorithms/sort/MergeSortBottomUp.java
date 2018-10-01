@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Merge sort from the bottom-up.
  *
- * @param <V>
+ * @param &lt;V&gt;
  */
 public class MergeSortBottomUp<V extends Comparable> extends BaseSortAlgorithm<V> {
 
