@@ -35,6 +35,8 @@ import java.util.*;
  */
 public class Djikstra {
 
+	// Constant for the distance attribute set on the GraphEdge between GraphNodes
+	// to indicates distance between them.
 	public static String DISTANCE = "distance";
 
 	/**
@@ -47,10 +49,10 @@ public class Djikstra {
 	static public Topology analyze(Graph graph, String startingNodeId) {
 
 		Topology topology = new Topology();
-		// Initialize the distance to the source to 0
+		// Initialize the distance to the starting GraphNode to 0
 		topology.getShortestDistances().put(startingNodeId, 0);
 
-		// Initialize the Set of unvisited Nodes to all Nodes reachable from initial Node
+		// Initialize the Set of unvisited Nodes to all Nodes reachable from the starting Node
 		// NOTE This should ideally be a PriorityQueue where the highest priority
 		// NOTE is the edge with the shortest length. A min-heap could also be used.
 		Queue<String> unvisited = new ArrayDeque<>(graph.getNodes().keySet());
