@@ -1,5 +1,5 @@
 /* (C) Copyright 2017-2018 Laran Evans */
-package com.laranevans.cs.structures.lists.algorithms;
+package com.laranevans.cs.structures.lists.algorithms.greedy;
 
 import com.laranevans.cs.algorithms.BaseAlgorithm;
 
