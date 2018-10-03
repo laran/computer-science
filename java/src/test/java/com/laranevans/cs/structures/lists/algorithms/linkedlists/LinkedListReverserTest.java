@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.laranevans.cs.structures.lists.algorithms.linkedlists.LinkedListReverser.Node;
-
 public class LinkedListReverserTest {
 
 	@Test

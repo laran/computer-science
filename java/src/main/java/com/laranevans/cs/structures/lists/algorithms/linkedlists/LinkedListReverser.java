@@ -3,27 +3,14 @@ package com.laranevans.cs.structures.lists.algorithms.linkedlists;
 
 /**
  * To reverse a LinkedList in real life you'd probably use java.util.LinkedList and
- * java.util.Collections.reverse(..). This is a stripped down version to show the
- * basic algorithm.
+ * java.util.Collections.reverse(..).
+ *
+ * This is a stripped down version to show the basic algorithm.
+ *
+ * If you aren't familiar with Java, the Node class is defined in same package as this
+ * class. You can browse the source on GitHub to take a look.
  */
 public class LinkedListReverser {
-
-	/**
-	 * A very basic Node class which we'll use to represent a LinkedList.
-	 */
-	static class Node {
-		Node next;
-		Object value;
-
-		public Node(Object value) {
-			this.value = value;
-		}
-
-		public Node(Object value, Node next) {
-			this.next = next;
-			this.value = value;
-		}
-	}
 
 	/**
 	 *
