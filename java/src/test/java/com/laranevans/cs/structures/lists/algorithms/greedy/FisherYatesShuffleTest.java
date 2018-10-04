@@ -1,7 +1,6 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.lists.algorithms.greedy;
 
-import com.laranevans.cs.structures.lists.algorithms.greedy.FisherYatesShuffle;
 import org.junit.Assert;
 import org.junit.Test;
 

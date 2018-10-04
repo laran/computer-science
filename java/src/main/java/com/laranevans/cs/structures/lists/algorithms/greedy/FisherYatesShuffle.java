@@ -4,12 +4,11 @@ package com.laranevans.cs.structures.lists.algorithms.greedy;
 import com.laranevans.cs.algorithms.BaseAlgorithm;
 
 /**
- *
  * @param &lt;V&gt;
  */
-public class FisherYatesShuffle<V extends Comparable> extends BaseAlgorithm {
+public class FisherYatesShuffle extends BaseAlgorithm {
 
-	public void shuffle(V[] a) {
+	public <V extends Comparable> void shuffle(V[] a) {
 		if (a.length <= 1) {
 			return;
 		}
@@ -21,5 +20,4 @@ public class FisherYatesShuffle<V extends Comparable> extends BaseAlgorithm {
 			}
 		}
 	}
-
 }

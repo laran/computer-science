@@ -1,26 +1,26 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.lists.algorithms.sort;
 
+import com.laranevans.cs.structures.lists.ArrayHelper;
+
 /**
- *
  * @param &lt;V&gt;
  */
 public class QuickSort<V extends Comparable> extends BaseSortAlgorithm<V> {
 
 	/**
-	 *
 	 * @param a
 	 */
 	@Override
 	public void sort(V[] a) {
 		sort(a, 0, a.length - 1);
 
-		assert isSorted(a);
+		assert ArrayHelper.isSorted(a);
 		showResults(a);
 	}
 
 	private void sort(V[] a, int lo, int hi) {
-		if ((hi-lo) > 0) {
+		if ((hi - lo) > 0) {
 			int p = partition(a, lo, hi); // partition to identify the pivot
 			sort(a, lo, p - 1); // sort the lhs
 			sort(a, p + 1, hi); // sort the rhs

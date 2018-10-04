@@ -1,6 +1,8 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.lists.algorithms.sort;
 
+import com.laranevans.cs.structures.lists.ArrayHelper;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -15,7 +17,7 @@ public class MergeSortTopDown<V extends Comparable> extends BaseSortAlgorithm<V>
 	public void sort(V[] a) {
 		doSort(a);
 
-		assert isSorted(a);
+		assert ArrayHelper.isSorted(a);
 		showResults(a);
 	}
 
@@ -48,7 +50,8 @@ public class MergeSortTopDown<V extends Comparable> extends BaseSortAlgorithm<V>
 			}
 		}
 		while (iLeft < left.length) {
-			set(a, iA++, left, iLeft++);;
+			set(a, iA++, left, iLeft++);
+			;
 		}
 		while (iRight < right.length) {
 			set(a, iA++, right, iRight++);

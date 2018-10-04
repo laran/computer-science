@@ -1,6 +1,8 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.lists.algorithms.sort;
 
+import com.laranevans.cs.structures.lists.ArrayHelper;
+
 import java.util.Objects;
 
 /**
@@ -23,7 +25,7 @@ public class MergeSortBottomUp<V extends Comparable> extends BaseSortAlgorithm<V
 			}
 		}
 
-		assert isSorted(origin);
+		assert ArrayHelper.isSorted(origin);
 		showResults(origin);
 	}
 

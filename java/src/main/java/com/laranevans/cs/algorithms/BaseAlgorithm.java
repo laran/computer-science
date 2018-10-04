@@ -1,6 +1,8 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.algorithms;
 
+import com.laranevans.cs.structures.lists.ArrayHelper;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -40,15 +42,6 @@ public abstract class BaseAlgorithm<V extends Comparable> {
 		));
 	}
 
-	protected boolean isSorted(V[] values) {
-		for (int i = 1; i < values.length; i++) {
-			if (isLessThan(values[i], values[i - 1])) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	protected boolean isLessThan(V lhs, V rhs) {
 		comparisons.getAndIncrement();
 		return (lhs.compareTo(rhs) < 0);
@@ -76,14 +69,12 @@ public abstract class BaseAlgorithm<V extends Comparable> {
 
 	protected void swap(V[] a, int i, int j) {
 		swaps.getAndIncrement();
-		V swap = a[i];
-		a[i] = a[j];
-		a[j] = swap;
+		ArrayHelper.swap(a, i, j);
 	}
 
 	protected void set(V[] sink, int iSink, V[] source, int iSource) {
 		sets.getAndIncrement();
-		sink[iSink] = source[iSource];
+		ArrayHelper.set(sink, iSink, source, iSource);
 	}
 
 	protected int getRandom(int floor, int ceiling) {

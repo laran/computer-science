@@ -1,8 +1,9 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.lists.algorithms.sort;
 
+import com.laranevans.cs.structures.lists.ArrayHelper;
+
 /**
- *
  * @param &lt;V&gt;
  */
 public class InsertionSort<V extends Comparable> extends BaseSortAlgorithm<V> {
@@ -22,6 +23,8 @@ public class InsertionSort<V extends Comparable> extends BaseSortAlgorithm<V> {
 				j--;
 			}
 		}
+
+		assert ArrayHelper.isSorted(a);
 		showResults(a);
 	}
 }

@@ -4,7 +4,6 @@ package com.laranevans.cs.structures.lists.algorithms.sort;
 import com.laranevans.cs.algorithms.BaseAlgorithm;
 
 /**
- *
  * @param &lt;V&gt;
  */
 abstract class BaseSortAlgorithm<V extends Comparable> extends BaseAlgorithm<V> implements SortAlgorithm<V> {

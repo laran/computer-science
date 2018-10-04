@@ -6,10 +6,9 @@ import com.laranevans.cs.algorithms.BaseAlgorithm;
 import java.util.Objects;
 
 /**
- *
  * @param &lt;V&gt;
  */
-public class BinarySearch <V extends Comparable> extends BaseAlgorithm<V> {
+public class BinarySearch<V extends Comparable> extends BaseAlgorithm<V> {
 
 	public int search(V[] a, V o) {
 		return search(a, o, 0, a.length - 1);
@@ -38,7 +37,7 @@ public class BinarySearch <V extends Comparable> extends BaseAlgorithm<V> {
 		}
 
 		// ... otherwise, search the right half
-		return search(a, o, i+1, hi);
+		return search(a, o, i + 1, hi);
 	}
 
 }
