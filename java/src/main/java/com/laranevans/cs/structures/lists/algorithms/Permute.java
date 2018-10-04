@@ -1,5 +1,5 @@
 /* (C) Copyright 2017-2018 Laran Evans */
-package com.laranevans.cs.structures.strings.algorithms;
+package com.laranevans.cs.structures.lists.algorithms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,33 @@ public class Permute {
 	private void permute(char[] a, int lo, int hi, List<String> results) {
 		if (lo >= hi) { // we've fully permuted the string
 			results.add(new String(a));
+			return; // we're done
+		}
+
+		for (int i = lo; i <= hi; i++) {
+			swap(a, lo, i); // lo and i will be the same on the first iteration. that's ok.
+			permute(a, lo + 1, hi, results);
+			swap(a, lo, i);
+		}
+	}
+
+	/**
+	 * Returns all permutations of an Array of Objects.
+	 *
+	 * @param s
+	 * @return
+	 */
+	public List<Object[]> permute(Object[] s) {
+		List<Object[]> results = new ArrayList<>();
+		permute(s, 0, s.length - 1, results);
+		return results;
+	}
+
+	private void permute(Object[] a, int lo, int hi, List<Object[]> results) {
+		if (lo >= hi) { // we've fully permuted the string
+			Object[] tmp = new Object[a.length];
+			System.arraycopy(a, 0, tmp, 0, a.length);
+			results.add(tmp);
 			return; // we're done
 		}
 

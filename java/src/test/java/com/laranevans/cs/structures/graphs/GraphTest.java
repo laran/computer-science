@@ -1,11 +1,13 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.graphs;
 
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 
+@DisplayName("A Graph")
 public class GraphTest {
 
 	@Test

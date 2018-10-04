@@ -3,18 +3,23 @@ package com.laranevans.cs.structures.graphs.algorithms;
 
 import com.laranevans.cs.structures.graphs.Graph;
 import com.laranevans.cs.structures.graphs.GraphNode;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.laranevans.cs.structures.graphs.algorithms.Djikstra.DISTANCE;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
+@DisplayName("Djikstra's Algorithm")
 public class DjikstraTest {
 
 	@Test
-	public void shouldFindShortestRoute() {
+	public void shouldFindTheShortestRoute() {
 		String a = "a", b = "b", c = "c", d = "d";
 
 		Graph graph = new Graph()

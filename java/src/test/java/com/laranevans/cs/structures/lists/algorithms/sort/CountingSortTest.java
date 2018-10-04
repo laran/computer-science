@@ -2,54 +2,56 @@
 package com.laranevans.cs.structures.lists.algorithms.sort;
 
 import org.hamcrest.Matchers;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
+@DisplayName("Counting Sort")
 public class CountingSortTest {
 
 	@Test
-	public void testSortIntsWithNoDuplicates() {
+	public void shouldSortAnArrayOfIntsWithoutDuplicates() {
 		int[] a = new int[]{2, 5, 3, 7, 9, 6};
-		Assert.assertThat(
+		assertThat(
 			new CountingSort().sort(a, 9),
 			Matchers.equalTo(new int[]{2, 3, 5, 6, 7, 9}));
 	}
 
 	@Test
-	public void testSortIntsWithDuplicates() {
+	public void shouldSortAnArrayOfIntsWithDuplicates() {
 		int[] a = new int[]{2, 5, 5, 7, 9, 6};
-		Assert.assertThat(
+		assertThat(
 			new CountingSort().sort(a, 9),
 			Matchers.equalTo(new int[]{2, 5, 5, 6, 7, 9}));
 	}
 
 	@Test
-	public void testSortEmptyArray() {
+	public void shouldHandleAnEmptyArray() {
 		int[] a = new int[]{};
-		Assert.assertThat(
+		assertThat(
 			new CountingSort().sort(a, 0),
 			Matchers.equalTo(new int[]{}));
 	}
 
 	@Test
-	public void testHandlesNullArray() {
+	public void shouldHandleANullArray() {
 		int[] a = new int[]{};
-		Assert.assertThat(
+		assertThat(
 			new CountingSort().sort(null, 0),
 			Matchers.nullValue());
 	}
 
 	@Test
-	public void testHandlesNegativeMaxValue() {
+	public void shouldHandleANegativeMaxValue() {
 		int[] a = new int[]{};
 		try {
-			new CountingSort().sort(new int[] {1, 2, 3}, -1);
+			new CountingSort().sort(new int[]{1, 2, 3}, -1);
 			fail("Negative maxValue should throw IllegalArgumentException");
 		} catch (IllegalArgumentException iae) {
-			Assert.assertTrue(true);
+			assertTrue(true);
 		}
 	}
-
 }

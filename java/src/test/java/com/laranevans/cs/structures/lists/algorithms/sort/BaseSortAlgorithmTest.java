@@ -1,14 +1,14 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.lists.algorithms.sort;
 
-import org.hamcrest.Matchers;
-import org.junit.Assert;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 public class BaseSortAlgorithmTest {
 
 	protected <V extends Comparable> void sortAndVerify(BaseSortAlgorithm<V> algorithm, V[] a, V[] expected) {
 		algorithm.sort(a);
-		Assert.assertThat(a, Matchers.equalTo(expected));
+		assertThat(a, equalTo(expected));
 	}
 
 }

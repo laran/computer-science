@@ -3,17 +3,20 @@ package com.laranevans.cs.structures.lists.algorithms.linkedlists;
 
 import com.laranevans.cs.structures.lists.SinglyLinkedListNode;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
+@DisplayName("LinkedListReverser")
 public class LinkedListReverserTest {
 
 	@Test
-	public void shouldReverseUsingIterator() {
+	public void shouldReverseAListOfIntegers() {
 		// Build a Linked List
 		SinglyLinkedListNode head =
 			new SinglyLinkedListNode(1,
@@ -32,6 +35,6 @@ public class LinkedListReverserTest {
 		} while (newHead != null);
 
 		// Voila!
-		Assert.assertThat(list, Matchers.equalTo(Arrays.asList(4, 3, 2, 1)));
+		assertThat(list, Matchers.equalTo(Arrays.asList(4, 3, 2, 1)));
 	}
 }
