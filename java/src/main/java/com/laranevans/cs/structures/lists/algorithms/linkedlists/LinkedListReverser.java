@@ -20,8 +20,8 @@ public class LinkedListReverser {
 		LinkedListNode current = root;
 		LinkedListNode prev = null;
 		while (current != null) {
-			LinkedListNode tmp = current.next;
-			current.next = prev;
+			LinkedListNode tmp = current.getNext();
+			current.setNext(prev);
 			prev = current;
 			current = tmp;
 		}
