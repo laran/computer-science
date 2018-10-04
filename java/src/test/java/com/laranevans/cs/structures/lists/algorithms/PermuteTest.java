@@ -23,11 +23,11 @@ public class PermuteTest {
 	@Test
 	public void shouldPermuteAnArrayOfObjects() {
 		List<Object[]> output = new Permute().permute(new Object[]{'a', 'b', 'c'});
-		assertThat(output.get(0), equalTo(new Object[]{'a', 'b', 'c'}));
-		assertThat(output.get(1), equalTo(new Object[]{'a', 'c', 'b'}));
-		assertThat(output.get(2), equalTo(new Object[]{'b', 'a', 'c'}));
-		assertThat(output.get(3), equalTo(new Object[]{'b', 'c', 'a'}));
-		assertThat(output.get(4), equalTo(new Object[]{'c', 'b', 'a'}));
-		assertThat(output.get(5), equalTo(new Object[]{'c', 'a', 'b'}));
+		assertThat(output.get(0), is(arrayContaining('a', 'b', 'c')));
+		assertThat(output.get(1), is(arrayContaining('a', 'c', 'b')));
+		assertThat(output.get(2), is(arrayContaining('b', 'a', 'c')));
+		assertThat(output.get(3), is(arrayContaining('b', 'c', 'a')));
+		assertThat(output.get(4), is(arrayContaining('c', 'b', 'a')));
+		assertThat(output.get(5), is(arrayContaining('c', 'a', 'b')));
 	}
 }
