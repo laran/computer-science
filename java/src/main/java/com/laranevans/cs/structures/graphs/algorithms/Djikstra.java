@@ -52,7 +52,7 @@ public class Djikstra {
 		// Initialize the distance to the starting GraphNode to 0
 		topology.getShortestDistances().put(startingNodeId, 0);
 
-		// Initialize the Set of unvisited Nodes to all Nodes reachable from the starting Node
+		// Initialize the Set of unvisited Nodes to all Nodes reachable from the starting GraphNode
 		// NOTE This should ideally be a PriorityQueue where the highest priority
 		// NOTE is the edge with the shortest length. A min-heap could also be used.
 		Queue<String> unvisited = new ArrayDeque<>(graph.getNodes().keySet());
