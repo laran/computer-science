@@ -1,7 +1,7 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.lists.algorithms.linkedlists;
 
-import com.laranevans.cs.structures.lists.LinkedListNode;
+import com.laranevans.cs.structures.lists.SinglyLinkedListNode;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,20 +15,20 @@ public class LinkedListReverserTest {
 	@Test
 	public void shouldReverseUsingIterator() {
 		// Build a Linked List
-		LinkedListNode head =
-			new LinkedListNode(1,
-				new LinkedListNode(2,
-					new LinkedListNode(3,
-						new LinkedListNode(4))));
+		SinglyLinkedListNode head =
+			new SinglyLinkedListNode(1,
+				new SinglyLinkedListNode(2,
+					new SinglyLinkedListNode(3,
+						new SinglyLinkedListNode(4))));
 
 		// Reverse it, getting the new head.
-		LinkedListNode newHead = LinkedListReverser.reverse(head);
+		SinglyLinkedListNode newHead = LinkedListReverser.reverse(head);
 
 		// Iterate the Nodes to collect their values.
 		List<Object> list = new ArrayList<>();
 		do {
-			list.add(newHead.value);
-			newHead = newHead.next;
+			list.add(newHead.getValue());
+			newHead = newHead.getNext();
 		} while (newHead != null);
 
 		// Voila!

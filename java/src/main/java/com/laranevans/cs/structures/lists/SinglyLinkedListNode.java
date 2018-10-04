@@ -2,26 +2,26 @@
 package com.laranevans.cs.structures.lists;
 
 /**
- * A very basic LinkedListNode class which we'll use to represent a LinkedList.
+ * A Node class for use as/in a singly-linked list.
  */
-public class LinkedListNode {
-	protected LinkedListNode next;
+public class SinglyLinkedListNode {
+	protected SinglyLinkedListNode next;
 	protected Object value;
 
-	public LinkedListNode(Object value) {
+	public SinglyLinkedListNode(Object value) {
 		this(value, null);
 	}
 
-	public LinkedListNode(Object value, LinkedListNode next) {
+	public SinglyLinkedListNode(Object value, SinglyLinkedListNode next) {
 		this.next = next;
 		this.value = value;
 	}
 
-	public LinkedListNode getNext() {
+	public SinglyLinkedListNode getNext() {
 		return next;
 	}
 
-	public void setNext(LinkedListNode next) {
+	public void setNext(SinglyLinkedListNode next) {
 		this.next = next;
 	}
 

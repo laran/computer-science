@@ -1,6 +1,11 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.trees;
 
+/**
+ * A basic TreeNode for use in a BinaryTree.
+ *
+ * @param &lt;V&gt;
+ */
 public class BinaryTreeNode<V extends Comparable> {
 	protected V value;
 	protected BinaryTreeNode left;

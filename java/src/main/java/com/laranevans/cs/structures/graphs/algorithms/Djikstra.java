@@ -46,7 +46,7 @@ public class Djikstra {
 	 * @param startingNodeId
 	 * @return a Topology of the whole Graph, with distances from the given starting GraphNode
 	 */
-	static public Topology analyze(Graph graph, String startingNodeId) {
+	public static Topology analyze(Graph graph, String startingNodeId) {
 
 		Topology topology = new Topology();
 		// Initialize the distance to the starting GraphNode to 0
@@ -79,7 +79,7 @@ public class Djikstra {
 	/**
 	 * Class to encapsulate the steps and distance from one GraphNode to another.
 	 */
-	static public class Route {
+	public static class Route {
 		private List<String> steps;
 		private Integer distance;
 
@@ -101,7 +101,7 @@ public class Djikstra {
 	 * Class to encapsulate all the information recorded when analyzing a Graph for the purpose
 	 * of finding the shortest route from one GraphNode to another.
 	 */
-	static public class Topology {
+	public static class Topology {
 		private Map<String, Integer> shortestDistances;
 		private Map<String, String> routes;
 

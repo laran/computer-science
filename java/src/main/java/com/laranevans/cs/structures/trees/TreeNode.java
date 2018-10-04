@@ -4,6 +4,13 @@ package com.laranevans.cs.structures.trees;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A basic TreeNode for an unrestricted Tree.
+ * This does NOT meet the criteria for a Binary Tree.
+ * See {@link BinaryTreeNode} for that.
+ *
+ * @param &lt;V&gt;
+ */
 public class TreeNode<V extends Comparable> {
 	protected V value;
 	protected List<TreeNode<V>> children;
