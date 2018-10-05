@@ -18,7 +18,8 @@ public class FindTheMiddleTest {
 				new SinglyLinkedListNode(3)));
 		FindTheMiddle.Result result = FindTheMiddle.of(head);
 		assertThat(result.getExactly(), is(notNullValue()));
-		assertThat(result.getExactly().getValue(), is(equalTo(2)));
+		assertThat(result.getExactly().getNode().getValue(), is(equalTo(2)));
+		assertThat(result.getExactly().getPosition(), is(equalTo(1)));
 		assertThat(result.getBefore(), is(nullValue()));
 		assertThat(result.getAfter(), is(nullValue()));
 	}
@@ -32,9 +33,11 @@ public class FindTheMiddleTest {
 		FindTheMiddle.Result result = FindTheMiddle.of(head);
 		assertThat(result.getExactly(), is(nullValue()));
 		assertThat(result.getBefore(), is(notNullValue()));
-		assertThat(result.getBefore().getValue(), is(equalTo(2)));
+		assertThat(result.getBefore().getNode().getValue(), is(equalTo(2)));
+		assertThat(result.getBefore().getPosition(), is(equalTo(1)));
 		assertThat(result.getAfter(), is(notNullValue()));
-		assertThat(result.getAfter().getValue(), is(equalTo(3)));
+		assertThat(result.getAfter().getNode().getValue(), is(equalTo(3)));
+		assertThat(result.getAfter().getPosition(), is(equalTo(2)));
 	}
 
 }

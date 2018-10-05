@@ -8,41 +8,6 @@ import java.util.Objects;
 public class FindTheMiddle {
 
 	/**
-	 * This class captures whether:
-	 *
-	 * - the exact middle was found (because the list had an odd number of elements)
-	 * - the elements adjacent to the middle need to be used (because the list had an even number of elements)
-	 *
-	 * This allows us to more easily and intuitively be aware of and work with these cases.
-	 */
-	public static class Result {
-		private SinglyLinkedListNode exactly;
-		private SinglyLinkedListNode before;
-		private SinglyLinkedListNode after;
-
-		public Result(SinglyLinkedListNode exactly) {
-			this.exactly = exactly;
-		}
-
-		public Result(SinglyLinkedListNode before, SinglyLinkedListNode after) {
-			this.before = before;
-			this.after = after;
-		}
-
-		public SinglyLinkedListNode getExactly() {
-			return exactly;
-		}
-
-		public SinglyLinkedListNode getBefore() {
-			return before;
-		}
-
-		public SinglyLinkedListNode getAfter() {
-			return after;
-		}
-	}
-
-	/**
 	 * Uses the "runner method" to find the middle.
 	 * One pointer moves two nodes at a time.
 	 * Another pointer moves one node at a time.
@@ -59,20 +24,78 @@ public class FindTheMiddle {
 		SinglyLinkedListNode slowPointer = head;
 		SinglyLinkedListNode fastPointer = head;
 		SinglyLinkedListNode laggingPointer = head;
+		int slowPointerIndex = 0;
 
 		while (!Objects.isNull(fastPointer) && !Objects.isNull(fastPointer.getNext())) {
 			fastPointer = fastPointer.getNext().getNext();
 			laggingPointer = slowPointer;
 			slowPointer = slowPointer.getNext();
+			slowPointerIndex++;
 		}
 
 		if (Objects.isNull(fastPointer)) {
 			// even number of elements, return nodes before and after middle
-			return new Result(laggingPointer, slowPointer);
+			return new Result(laggingPointer, slowPointer, slowPointerIndex);
 		}
 
 		// odd number of elements, return exact middle
-		return new Result(slowPointer);
+		return new Result(slowPointer, slowPointerIndex);
+	}
+
+	/**
+	 * This class captures whether:
+	 *
+	 * - the exact middle was found (because the list had an odd number of elements)
+	 * - the elements adjacent to the middle need to be used (because the list had an even number of elements)
+	 *
+	 * This allows us to more easily and intuitively be aware of and work with these cases.
+	 */
+	public static class Result {
+		private ResultNodeInfo exactly;
+		private ResultNodeInfo before;
+		private ResultNodeInfo after;
+
+		public Result(SinglyLinkedListNode exactly, int position) {
+			this.exactly = new ResultNodeInfo(exactly, position);
+		}
+
+		public Result(SinglyLinkedListNode before, SinglyLinkedListNode after, int slowPointerIndex) {
+			this.before = new ResultNodeInfo(before, slowPointerIndex - 1);
+			this.after = new ResultNodeInfo(after, slowPointerIndex);
+		}
+
+		public ResultNodeInfo getExactly() {
+			return exactly;
+		}
+
+		public ResultNodeInfo getBefore() {
+			return before;
+		}
+
+		public ResultNodeInfo getAfter() {
+			return after;
+		}
+	}
+
+	/**
+	 * The class allows us to capture both the node and the index at which it exists in the list.
+	 */
+	public static class ResultNodeInfo {
+		private SinglyLinkedListNode node;
+		private Integer position;
+
+		public ResultNodeInfo(SinglyLinkedListNode node, Integer position) {
+			this.node = node;
+			this.position = position;
+		}
+
+		public SinglyLinkedListNode getNode() {
+			return node;
+		}
+
+		public Integer getPosition() {
+			return position;
+		}
 	}
 
 }
