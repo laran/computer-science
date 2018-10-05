@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * A TrieNode backed by a Map.
  */
 public class MapBackedTrieNode implements TrieNode {
+
 	private Character value;
 	private Map<Character, MapBackedTrieNode> children;
 
@@ -31,7 +32,8 @@ public class MapBackedTrieNode implements TrieNode {
 
 	@Override
 	public boolean isWord() {
-		return children.containsKey(TrieNode.WORD_TERMINATOR);
+		// null key is used to mark the word terminator
+		return children.containsKey(null);
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class MapBackedTrieNode implements TrieNode {
 			}
 			node = node.children.get(c);
 		}
-		node.children.put(TrieNode.WORD_TERMINATOR, null);
+		node.children.put(null, null); // null key is used to mark the word terminator
 		return node;
 	}
 

@@ -21,10 +21,18 @@ public class ArrayBackedTrieNode implements TrieNode {
 
 	private ArrayBackedTrieNode[] children;
 
+	/**
+	 * Public constructor to support the ASCII alphabet by default.
+	 */
 	public ArrayBackedTrieNode() {
 		this(SIZE_OF_ASCII_ALPHABET);
 	}
 
+	/**
+	 * Public constructor to allow any size alphabet.
+	 *
+	 * @param sizeOfAlphabet
+	 */
 	public ArrayBackedTrieNode(Integer sizeOfAlphabet) {
 		this(null, sizeOfAlphabet);
 	}
