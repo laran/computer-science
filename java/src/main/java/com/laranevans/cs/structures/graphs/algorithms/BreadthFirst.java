@@ -66,11 +66,11 @@ public class BreadthFirst {
 
 		// Using a Queue makes it breadth-first.
 		// Replacing the Queue with a Stack would make it depth-first.
-		Stack<String> stack = new Stack<>();
-		stack.push(root.getId());
+		Queue<String> q = new ArrayDeque<>();
+		q.offer(root.getId());
 
-		while(!stack.isEmpty()) {
-			String nodeId = stack.pop();
+		while(!q.isEmpty()) {
+			String nodeId = q.poll();
 
 			// Ensure we visit each node at most once.
 			if(visitedNodes.contains(nodeId)) {
@@ -88,7 +88,7 @@ public class BreadthFirst {
 
 			// If not, push all neighbors onto the stack
 			for(String neighborId:node.getEdges().keySet()) {
-				stack.push(neighborId);
+				q.offer(neighborId);
 			}
 		}
 
