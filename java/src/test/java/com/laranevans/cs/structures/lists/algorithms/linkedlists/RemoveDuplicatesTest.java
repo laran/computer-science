@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@DisplayName("Remove duplicates from a Singly Linked List")
+@DisplayName("Remove duplicates")
 public class RemoveDuplicatesTest {
 
 	@Test

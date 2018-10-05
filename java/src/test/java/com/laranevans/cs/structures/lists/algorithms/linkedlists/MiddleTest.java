@@ -8,15 +8,15 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-@DisplayName("Find the middle of a singly-linked list")
-public class FindTheMiddleTest {
+@DisplayName("Middle")
+public class MiddleTest {
 
 	@Test
 	public void shouldFindTheExactMiddleWithAnOddLength() {
 		SinglyLinkedListNode head = new SinglyLinkedListNode(1,
 			new SinglyLinkedListNode(2,
 				new SinglyLinkedListNode(3)));
-		FindTheMiddle.Result result = FindTheMiddle.of(head);
+		Middle.Result result = Middle.of(head);
 		assertThat(result.getExactly(), is(notNullValue()));
 		assertThat(result.getExactly().getNode().getValue(), is(equalTo(2)));
 		assertThat(result.getExactly().getPosition(), is(equalTo(1)));
@@ -30,7 +30,7 @@ public class FindTheMiddleTest {
 			new SinglyLinkedListNode(2,
 				new SinglyLinkedListNode(3,
 					new SinglyLinkedListNode(4))));
-		FindTheMiddle.Result result = FindTheMiddle.of(head);
+		Middle.Result result = Middle.of(head);
 		assertThat(result.getExactly(), is(nullValue()));
 		assertThat(result.getBefore(), is(notNullValue()));
 		assertThat(result.getBefore().getNode().getValue(), is(equalTo(2)));

@@ -5,7 +5,7 @@ import com.laranevans.cs.structures.lists.SinglyLinkedListNode;
 
 import java.util.Objects;
 
-public class FindTheMiddle {
+public class Middle {
 
 	/**
 	 * Uses the "runner method" to find the middle.

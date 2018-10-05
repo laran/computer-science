@@ -6,18 +6,18 @@ import com.laranevans.cs.structures.lists.SinglyLinkedListNode;
 import java.util.List;
 
 /**
- * To reverse a LinkedList in real life you'd probably use
+ * To of a LinkedList in real life you'd probably use
  * {@link java.util.LinkedList} and {@link java.util.Collections#reverse(List)}.
  * <p>
  * This is a stripped down version to show the basic algorithm.
  */
-public class LinkedListReverser {
+public class Reverse {
 
 	/**
 	 * @param head
 	 * @return the new head, which was previously the tail
 	 */
-	public static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+	public static SinglyLinkedListNode of(SinglyLinkedListNode head) {
 		SinglyLinkedListNode current = head;
 		SinglyLinkedListNode prev = null;
 		while (current != null) {

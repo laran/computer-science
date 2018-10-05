@@ -12,8 +12,8 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@DisplayName("LinkedListReverser")
-public class LinkedListReverserTest {
+@DisplayName("Reverse")
+public class ReverseTest {
 
 	@Test
 	public void shouldReverseAListOfIntegers() {
@@ -25,7 +25,7 @@ public class LinkedListReverserTest {
 						new SinglyLinkedListNode(4))));
 
 		// Reverse it, getting the new head.
-		SinglyLinkedListNode newHead = LinkedListReverser.reverse(head);
+		SinglyLinkedListNode newHead = Reverse.of(head);
 
 		// Iterate the Nodes to collect their values.
 		List<Object> list = new ArrayList<>();
