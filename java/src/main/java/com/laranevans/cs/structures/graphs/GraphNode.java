@@ -3,7 +3,6 @@ package com.laranevans.cs.structures.graphs;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class GraphNode {
 
@@ -35,6 +34,13 @@ public class GraphNode {
 
 	public GraphNode addEdgeTo(GraphNode node) {
 		return addEdgeTo(node, new HashMap<>());
+	}
+
+	public GraphNode addEdgesTo(GraphNode... nodes) {
+		for (GraphNode node : nodes) {
+			addEdgeTo(node);
+		}
+		return this;
 	}
 
 	public GraphNode addEdgeTo(GraphNode node, Map<String, String> properties) {

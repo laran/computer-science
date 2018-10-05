@@ -37,6 +37,13 @@ public class Graph {
 		return this;
 	}
 
+	public Graph addAll(GraphNode... nodes) {
+		for (GraphNode node : nodes) {
+			this.addNode(node);
+		}
+		return this;
+	}
+
 	public GraphNode getNode(String id) {
 		return this.nodes.get(id);
 	}
