@@ -32,7 +32,7 @@ public class MapBackedTrieNode implements TrieNode {
 
 	@Override
 	public boolean isWord() {
-		// null key is used to mark the word terminator
+		// null key marks the word terminator
 		return children.containsKey(null);
 	}
 
@@ -51,7 +51,7 @@ public class MapBackedTrieNode implements TrieNode {
 			}
 			node = node.children.get(c);
 		}
-		node.children.put(null, null); // null key is used to mark the word terminator
+		node.children.put(null, null); // null key marks the word terminator
 		return node;
 	}
 

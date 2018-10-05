@@ -45,7 +45,7 @@ public class ArrayBackedTrieNode implements TrieNode {
 	@Override
 	public boolean isWord() {
 		// The first bit is always the word terminator.
-		// It corresponds to the null character in the unicode character table.
+		// 0 corresponds to the null character in the unicode character table.
 		return this.children[0] != null;
 	}
 
@@ -65,7 +65,7 @@ public class ArrayBackedTrieNode implements TrieNode {
 			node = node.children[c];
 		}
 
-		node.children[0] = new ArrayBackedTrieNode('\0', 0); // set the word terminator bit
+		node.children[0] = new ArrayBackedTrieNode('\0', 0); // note the word terminator
 		return node;
 	}
 
