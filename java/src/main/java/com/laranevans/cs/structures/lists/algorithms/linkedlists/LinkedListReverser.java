@@ -14,11 +14,11 @@ import java.util.List;
 public class LinkedListReverser {
 
 	/**
-	 * @param root
+	 * @param head
 	 * @return the new head, which was previously the tail
 	 */
-	public static SinglyLinkedListNode reverse(SinglyLinkedListNode root) {
-		SinglyLinkedListNode current = root;
+	public static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+		SinglyLinkedListNode current = head;
 		SinglyLinkedListNode prev = null;
 		while (current != null) {
 			SinglyLinkedListNode tmp = current.getNext();

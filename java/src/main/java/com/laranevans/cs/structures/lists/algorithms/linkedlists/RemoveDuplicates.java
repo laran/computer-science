@@ -9,9 +9,14 @@ import java.util.Set;
 
 public class RemoveDuplicates {
 
-	public static void from(SinglyLinkedListNode node) {
+	/**
+	 * Remove duplicates from a singly-linked list.
+	 *
+	 * @param head
+	 */
+	public static void from(SinglyLinkedListNode head) {
 		Set<Object> seen = new HashSet<>();
-		SinglyLinkedListNode previous = node;
+		SinglyLinkedListNode previous = head;
 		seen.add(previous.getValue());
 		SinglyLinkedListNode current = previous.getNext();
 		while (!Objects.isNull(current)) {
