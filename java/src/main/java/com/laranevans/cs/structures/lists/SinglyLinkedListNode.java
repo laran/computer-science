@@ -32,4 +32,13 @@ public class SinglyLinkedListNode {
 	public void setValue(Object value) {
 		this.value = value;
 	}
+
+	public int length() {
+		int len = 1;
+		SinglyLinkedListNode node = this;
+		while((node = node.getNext()) != null) {
+			len++;
+		}
+		return len;
+	}
 }
