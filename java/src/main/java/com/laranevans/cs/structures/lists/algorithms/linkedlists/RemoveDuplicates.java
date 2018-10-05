@@ -16,7 +16,7 @@ public class RemoveDuplicates {
 		SinglyLinkedListNode current = previous.getNext();
 		while (!Objects.isNull(current)) {
 			if (seen.contains(current.getValue())) {
-				previous.setNext(current.getNext());
+				previous.setNext(current.getNext()); // remove the duplicate by skipping over it
 				current = previous;
 			} else {
 				seen.add(current.getValue());
