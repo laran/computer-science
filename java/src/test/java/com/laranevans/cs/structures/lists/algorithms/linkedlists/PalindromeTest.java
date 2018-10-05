@@ -72,5 +72,4 @@ public class PalindromeTest {
 		assertThat(head.getNext().getNext().getNext().getValue(), is(equalTo(2)));
 		assertThat(head.getNext().getNext().getNext().getNext().getValue(), is(equalTo(1)));
 	}
-
 }

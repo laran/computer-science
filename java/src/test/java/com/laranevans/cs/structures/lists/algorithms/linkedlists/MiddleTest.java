@@ -39,5 +39,4 @@ public class MiddleTest {
 		assertThat(result.getAfter().getNode().getValue(), is(equalTo(3)));
 		assertThat(result.getAfter().getPosition(), is(equalTo(2)));
 	}
-
 }
