@@ -3,6 +3,7 @@ package com.laranevans.cs.structures.graphs.algorithms;
 
 import com.laranevans.cs.structures.graphs.Graph;
 import com.laranevans.cs.structures.graphs.GraphNode;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,20 +13,13 @@ import static org.hamcrest.Matchers.*;
 @DisplayName("DepthFirstSearch")
 public class DepthFirstTest {
 
-	public static String VALUE = "value";
+	protected Graph universe;
 
-	@Test
-	public void shouldFindAMatch() {
-		GraphNodeMatcher matcher = new GraphNodeMatcher() {
-			@Override
-			public boolean matches(GraphNode node) {
-				return node.getId().equals("needle");
-			}
-		};
-
+	@BeforeEach
+	public void setup() {
 		// Let's construct a universe of things.
 
-		Graph universe = new Graph();
+		universe = new Graph();
 
 		GraphNode apple = new GraphNode("apple");
 		GraphNode orange = new GraphNode("orange");
@@ -42,12 +36,37 @@ public class DepthFirstTest {
 		thing.addEdgesTo(fruit, metalThing); // needle is a thing
 
 		universe.addAll(apple, orange, fruit, thing, metalThing, needle);
+	}
+
+	@Test
+	public void shouldFindAMatchWhenOneExists() {
+		GraphNodeMatcher matcher = new GraphNodeMatcher() {
+			@Override
+			public boolean matches(GraphNode node) {
+				return node.getId().equals("needle");
+			}
+		};
 
 		// OK. Now go find the needle!
 
-		GraphNode foundNeedle = DepthFirst.search(universe, thing, matcher);
+		GraphNode foundNeedle = DepthFirst.search(universe, universe.getNode("thing"), matcher);
 		assertThat(foundNeedle, is(notNullValue()));
-		assertThat(foundNeedle.getId(), is(equalTo(needle.getId())));
-
+		assertThat(foundNeedle.getId(), is(equalTo(universe.getNode("needle").getId())));
 	}
+
+	@Test
+	public void shouldNotFindAMatchWhenOneDoesntExist() {
+		GraphNodeMatcher matcher = new GraphNodeMatcher() {
+			@Override
+			public boolean matches(GraphNode node) {
+				return node.getId().equals("nothing");
+			}
+		};
+
+		// OK. Now go find "nothing"!
+
+		GraphNode foundNeedle = DepthFirst.search(universe, universe.getNode("thing"), matcher);
+		assertThat(foundNeedle, is(nullValue()));
+	}
+
 }
