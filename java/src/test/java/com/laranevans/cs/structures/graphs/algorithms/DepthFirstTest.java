@@ -39,7 +39,7 @@ public class DepthFirstTest {
 	}
 
 	@Test
-	public void shouldFindAMatchWhenOneExists() {
+	public void shouldFindAMatchRecursivelyWhenOneExists() {
 		GraphNodeMatcher matcher = new GraphNodeMatcher() {
 			@Override
 			public boolean matches(GraphNode node) {
@@ -49,13 +49,13 @@ public class DepthFirstTest {
 
 		// OK. Now go find the needle!
 
-		GraphNode foundNeedle = DepthFirst.search(universe, universe.getNode("thing"), matcher);
+		GraphNode foundNeedle = DepthFirst.searchRecursively(universe, universe.getNode("thing"), matcher);
 		assertThat(foundNeedle, is(notNullValue()));
 		assertThat(foundNeedle.getId(), is(equalTo(universe.getNode("needle").getId())));
 	}
 
 	@Test
-	public void shouldNotFindAMatchWhenOneDoesntExist() {
+	public void shouldNotFindAMatchRecursivelyWhenOneDoesntExist() {
 		GraphNodeMatcher matcher = new GraphNodeMatcher() {
 			@Override
 			public boolean matches(GraphNode node) {
@@ -65,7 +65,38 @@ public class DepthFirstTest {
 
 		// OK. Now go find "nothing"!
 
-		GraphNode foundNeedle = DepthFirst.search(universe, universe.getNode("thing"), matcher);
+		GraphNode foundNeedle = DepthFirst.searchRecursively(universe, universe.getNode("thing"), matcher);
+		assertThat(foundNeedle, is(nullValue()));
+	}
+
+	@Test
+	public void shouldFindAMatchIterativelyWhenOneExists() {
+		GraphNodeMatcher matcher = new GraphNodeMatcher() {
+			@Override
+			public boolean matches(GraphNode node) {
+				return node.getId().equals("needle");
+			}
+		};
+
+		// OK. Now go find the needle!
+
+		GraphNode foundNeedle = DepthFirst.searchIteratively(universe, universe.getNode("thing"), matcher);
+		assertThat(foundNeedle, is(notNullValue()));
+		assertThat(foundNeedle.getId(), is(equalTo(universe.getNode("needle").getId())));
+	}
+
+	@Test
+	public void shouldNotFindAMatchIterativelyWhenOneDoesntExist() {
+		GraphNodeMatcher matcher = new GraphNodeMatcher() {
+			@Override
+			public boolean matches(GraphNode node) {
+				return node.getId().equals("nothing");
+			}
+		};
+
+		// OK. Now go find "nothing"!
+
+		GraphNode foundNeedle = DepthFirst.searchIteratively(universe, universe.getNode("thing"), matcher);
 		assertThat(foundNeedle, is(nullValue()));
 	}
 
