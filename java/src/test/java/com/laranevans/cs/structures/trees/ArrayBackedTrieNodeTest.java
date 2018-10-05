@@ -1,8 +1,6 @@
 /* (C) Copyright 2017-2018 Laran Evans */
-package com.laranevans.cs.structures;
+package com.laranevans.cs.structures.trees;
 
-import com.laranevans.cs.structures.trees.MapBackedTrieNode;
-import com.laranevans.cs.structures.trees.TrieNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,14 +8,14 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@DisplayName("MapBackedTrieNode")
-public class MapBackedTrieNodeTest {
+@DisplayName("ArrayBackedTrieNode")
+public class ArrayBackedTrieNodeTest {
 
 	private TrieNode root;
 
 	@BeforeEach
 	public void setup() {
-		this.root = new MapBackedTrieNode();
+		this.root = new ArrayBackedTrieNode();
 	}
 
 	@Test
