@@ -7,6 +7,14 @@ import java.util.Objects;
 
 public class FindTheMiddle {
 
+	/**
+	 * This class captures whether:
+	 *
+	 * - the exact middle was found (because the list had an odd number of elements)
+	 * - the elements adjacent to the middle need to be used (because the list had an even number of elements)
+	 *
+	 * This allows us to more easily and intuitively be aware of and work with these cases.
+	 */
 	public static class Result {
 		private SinglyLinkedListNode exactly;
 		private SinglyLinkedListNode before;
