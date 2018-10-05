@@ -17,7 +17,6 @@ public class Palindrome {
 	 * The way this is implemented, it does modify the list in order to check for the palindrom condition.
 	 * This would probably not be appropriate in real life. It does revert the list before returning though.
 	 *
-	 *
 	 * @param head
 	 * @return
 	 */
