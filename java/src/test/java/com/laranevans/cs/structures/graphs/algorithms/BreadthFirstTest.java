@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@DisplayName("Depth-first Search")
-public class DepthFirstTest {
+@DisplayName("Breadth-first Search")
+public class BreadthFirstTest {
 
 	private Graph universe;
 	private GraphNodeMatcher needleMatcher;
@@ -47,27 +47,28 @@ public class DepthFirstTest {
 
 	@Test
 	public void shouldFindAMatchRecursivelyWhenOneExists() {
-		GraphNode foundNeedle = DepthFirst.searchRecursively(universe, universe.getNode("thing"), needleMatcher);
+		GraphNode foundNeedle = BreadthFirst.searchRecursively(universe, universe.getNode("thing"), needleMatcher);
 		assertThat(foundNeedle, is(notNullValue()));
 		assertThat(foundNeedle.getId(), is(equalTo(universe.getNode("needle").getId())));
 	}
 
 	@Test
 	public void shouldNotFindAMatchRecursivelyWhenOneDoesntExist() {
-		GraphNode foundNeedle = DepthFirst.searchRecursively(universe, universe.getNode("thing"), nothingMatcher);
+		GraphNode foundNeedle = BreadthFirst.searchRecursively(universe, universe.getNode("thing"), nothingMatcher);
 		assertThat(foundNeedle, is(nullValue()));
 	}
 
 	@Test
 	public void shouldFindAMatchIterativelyWhenOneExists() {
-		GraphNode foundNeedle = DepthFirst.searchIteratively(universe, universe.getNode("thing"), needleMatcher);
+		GraphNode foundNeedle = BreadthFirst.searchIteratively(universe, universe.getNode("thing"), needleMatcher);
 		assertThat(foundNeedle, is(notNullValue()));
 		assertThat(foundNeedle.getId(), is(equalTo(universe.getNode("needle").getId())));
 	}
 
 	@Test
 	public void shouldNotFindAMatchIterativelyWhenOneDoesntExist() {
-		GraphNode foundNeedle = DepthFirst.searchIteratively(universe, universe.getNode("thing"), nothingMatcher);
+		GraphNode foundNeedle = BreadthFirst.searchIteratively(universe, universe.getNode("thing"), nothingMatcher);
 		assertThat(foundNeedle, is(nullValue()));
 	}
+
 }
