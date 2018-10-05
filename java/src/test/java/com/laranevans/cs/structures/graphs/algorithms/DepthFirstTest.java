@@ -32,10 +32,10 @@ public class DepthFirstTest {
 		GraphNode needle = new GraphNode("needle");
 
 		GraphNode metalThing = new GraphNode("metalThing");
-		metalThing.addEdgeTo(needle);
+		metalThing.addEdgeTo(needle); // needle is a metalThing
 
 		GraphNode thing = new GraphNode("thing");
-		thing.addEdgesTo(fruit, metalThing); // needle is a thing
+		thing.addEdgesTo(fruit, metalThing); // metalThing is a thing
 
 		universe.addAll(apple, orange, fruit, thing, metalThing, needle);
 
