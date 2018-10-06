@@ -8,6 +8,7 @@ import java.util.Arrays;
  */
 public class EggDropSolver {
 
+	// This solves for a single answer given a single building with n floors
 	public static int solveRecursively(int nFloors, int kEggs) {
 
 		// Handle base cases
@@ -45,38 +46,44 @@ public class EggDropSolver {
 		return min;
 	}
 
-	public static int solveWithDP(int nFloors, int kEggs) {
-		//
-		int[][] memo = new int[nFloors + 1][kEggs + 1];
+	// This solves ALL buildings UP TO AND INCLUDING the size of the building we want to solve.
+	public static int solveWithDP(int maxNFloors, int kEggs) {
 
-		// When we have only one egg the worst case always depends on the floor on which the egg breaks
-		for (int floor = 0; floor <= nFloors; floor++) {
+		// +1 to use 1-based indexing
+		int[][] memo = new int[maxNFloors + 1][kEggs + 1];
+
+		// When we have only one egg we can only solve iteratively.
+		// So the worst case always depends on the floor on which the egg breaks.
+		for (int floor = 0; floor <= maxNFloors; floor++) {
 			memo[floor][0] = 0;
 			memo[floor][1] = floor;
 		}
 
 		// When the building has only one floor, the worst case is always 1
 		for (int numEggs = 1; numEggs <= kEggs; numEggs++) {
+			// memo[0][*] is already initialized to 0
 			memo[1][numEggs] = 1;
 		}
 
-		// Solve the problem for all buildings smaller than nFloors
+		// Solve the problem for all buildings smaller than nFloors and up to the number of eggs
+		// that we ultimately want to solve for.
 
 		// For all buildings with 2 or more floors ...
-		for (int floor = 1; floor <= nFloors; floor++) {
+		for (int nFloors = 2; nFloors <= maxNFloors; nFloors++) {
 
 			// ... and with 2 or more eggs ...
 			for (int egg = 2; egg <= kEggs; egg++) {
 
 				// ... follow the same basic algorithm as we used in the recursive method.
-				memo[floor][egg] = Integer.MAX_VALUE;
+				memo[nFloors][egg] = Integer.MAX_VALUE;
 
-				for (int x = 1; x <= floor; x++) {
-					int eggBreaksResult = memo[x - 1][egg - 1];
-					int eggDoesNotBreakResult = memo[floor - x][egg];
+				// Solve for all floors
+				for (int floor = 1; floor <= nFloors; floor++) {
+					int eggBreaksResult = memo[floor - 1][egg - 1];
+					int eggDoesNotBreakResult = memo[nFloors - floor][egg];
 					int temp = Math.max(eggBreaksResult, eggDoesNotBreakResult) + 1;
-					if (temp < memo[floor][egg]) {
-						memo[floor][egg] = temp;
+					if (temp < memo[nFloors][egg]) {
+						memo[nFloors][egg] = temp;
 					}
 				}
 			}
@@ -84,7 +91,7 @@ public class EggDropSolver {
 
 		show(memo);
 
-		return memo[nFloors][kEggs];
+		return memo[maxNFloors][kEggs];
 	}
 
 	public static void show(int[][] memo) {
