@@ -29,15 +29,19 @@ public class Hanoi {
 		// hanoi.solve(5, 0, 2, false)
 	}
 
+	// Solve and default to showing all work.
 	public void solve(int numDiscs, int iFromTower, int iToTower) {
 		solve(numDiscs, iFromTower, iToTower, true);
 	}
 
+	// Solve and specify whether or not to show all work.
 	public void solve(int numDiscs, int iFromTower, int iToTower, boolean showWork) {
 		initialize(numDiscs, iFromTower, showWork);
 		checkAndDoSolve(iToTower, showWork);
 	}
 
+	// Setup the towers, which I implemented as a triplet of Stacks.
+	// This initialization step allows the towers to be reset between calls to solve(...).
 	private void initialize(int numDiscs, int iFromTower, boolean showWork) {
 		this.numDiscs = numDiscs;
 		this.iFromTower = iFromTower;
@@ -51,18 +55,19 @@ public class Hanoi {
 			towers[iFromTower].push(i);
 		}
 
+		this.moveCounter = 0;
 		if (showWork) {
-			this.showTowers("Move #0: Initial state");
+			this.showTowers(String.format("Move #%s: Initial state", moveCounter));
 		}
 		this.isInitialized = true;
 	}
 
+	// Ensure initialize has been called, solve and then mark initialized as false.
 	private void checkAndDoSolve(int iToTower, boolean showWork) {
 		if (!this.isInitialized) {
 			throw new RuntimeException("Please call initialize(int, int) before solving");
 		}
 
-		this.moveCounter = 0;
 		this.doSolve(this.numDiscs, this.iFromTower, iToTower, showWork);
 		this.isInitialized = false;
 	}
