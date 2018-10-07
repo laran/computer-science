@@ -4,6 +4,8 @@ package com.laranevans.cs.dynamic;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -23,21 +25,46 @@ public class EggDropSolverTest {
 	}
 
 	@Test
-	public void shouldFind14With100FloorsAnd2Eggs() {
-		// Can only do this with DP. Too slow otherwise.
-		assertThat(EggDropSolver.solveWithDP(100, 2), is(equalTo(14)));
+	public void shouldFind14With100FloorsAnd2EggsUsingDP() {
+		solveWithDPAndCheck(100, 2, 14);
 	}
 
 	@Test
-	public void shouldFind9With100FloorsAnd3Eggs() {
-		// Can only do this with DP. Too slow otherwise.
-		assertThat(EggDropSolver.solveWithDP(100, 3), is(equalTo(9)));
+	public void shouldFind9With100FloorsAnd3EggsUsingDP() {
+		solveWithDPAndCheck(100, 3, 9);
 	}
 
 	@Test
-	public void shouldFind8With100FloorsAnd4Eggs() {
-		// Can only do this with DP. Too slow otherwise.
-		assertThat(EggDropSolver.solveWithDP(100, 4), is(equalTo(8)));
+	public void shouldFind8With100FloorsAnd4EggsUsingDP() {
+		solveWithDPAndCheck(100, 4, 8);
 	}
+
+	@Test
+	public void shouldFind14With100FloorsAnd2EggsUsingBinomials() {
+		assertThat(EggDropSolver.solveWithBinomials(100, 2), is(equalTo(14)));
+	}
+
+	@Test
+	public void shouldFind9With100FloorsAnd3EggsUsingBinomials() {
+		assertThat(EggDropSolver.solveWithBinomials(100, 3), is(equalTo(9)));
+	}
+
+	@Test
+	public void shouldFind8With100FloorsAnd4EggsUsingBinomials() {
+		assertThat(EggDropSolver.solveWithBinomials(100, 4), is(equalTo(8)));
+	}
+
+	private void solveWithDPAndCheck(int n, int k, int expectedResult) {
+		int[][] memo = EggDropSolver.solveWithDP(n, k);
+		show(memo);
+		assertThat(memo[n][k], is(equalTo(expectedResult)));
+	}
+
+	private void show(int[][] memo) {
+		for (int i = 0; i < memo.length; i++) {
+			System.out.println(Arrays.toString(memo[i]));
+		}
+	}
+
 
 }

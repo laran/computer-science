@@ -1,14 +1,13 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.dynamic;
 
-import java.util.Arrays;
-
 /**
  *
  */
 public class EggDropSolver {
 
 	// This solves for a single answer given a single building with n floors
+	// This solves in O(kEggs * nFloors * log(nFloors)) time and O(kEggs * nFloors) space.
 	public static int solveRecursively(int nFloors, int kEggs) {
 
 		// Handle base cases
@@ -47,7 +46,8 @@ public class EggDropSolver {
 	}
 
 	// This solves ALL buildings UP TO AND INCLUDING the size of the building we want to solve.
-	public static int solveWithDP(int maxNFloors, int kEggs) {
+	// This solves in O(kEggs * maxNFloors) time and O(nFloors) space.
+	public static int[][] solveWithDP(int maxNFloors, int kEggs) {
 
 		// +1 to use 1-based indexing
 		int[][] memo = new int[maxNFloors + 1][kEggs + 1];
@@ -89,15 +89,39 @@ public class EggDropSolver {
 			}
 		}
 
-		show(memo);
-
-		return memo[maxNFloors][kEggs];
+		return memo;
 	}
 
-	public static void show(int[][] memo) {
-		for (int i = 0; i < memo.length; i++) {
-			System.out.println(Arrays.toString(memo[i]));
+	// This solves in O(kEggs * log(nFloors)) time and O(1) space
+	public static int solveWithBinomials(int nFloors, int kEggs) {
+		int lo = 1;
+		int hi = nFloors;
+
+		while (lo < hi) {
+			int mid = (hi + lo) / 2;
+
+			if (binomial(mid, nFloors, kEggs) < nFloors) {
+				lo = mid + 1;
+			} else {
+				hi = mid;
+			}
 		}
+
+		return lo;
 	}
 
+	private static long binomial(int x, int n, int k) {
+		int sum = 0, aux = 1;
+
+		for (int i = 1; i <= k; ++i) {
+			aux *= x - i + 1;
+			aux /= i;
+			sum += aux;
+			if (sum >= n) {
+				break;
+			}
+		}
+
+		return sum;
+	}
 }
