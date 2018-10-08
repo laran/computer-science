@@ -32,24 +32,41 @@ public class GraphNode {
 		return this.edges.containsKey(nodeId);
 	}
 
-	public GraphNode addEdgeTo(GraphNode node) {
-		return addEdgeTo(node, new HashMap<>());
+	public GraphNode addDirectedEdgeTo(GraphNode node) {
+		return addDirectedEdgeTo(node, new HashMap<>());
 	}
 
-	public GraphNode addEdgesTo(GraphNode... nodes) {
+	public GraphNode addDirectedEdgesTo(GraphNode... nodes) {
 		for (GraphNode node : nodes) {
-			addEdgeTo(node);
+			addDirectedEdgeTo(node);
 		}
 		return this;
 	}
 
-	public GraphNode addEdgeTo(GraphNode node, Map<String, String> properties) {
+	public GraphNode addDirectedEdgeTo(GraphNode node, Map<String, String> properties) {
 		this.edges.put(node.id, new GraphEdge(properties));
 		return this;
 	}
 
-	public GraphNode removeEdgeTo(GraphNode node) {
+	public GraphNode removeDirectedEdgeTo(GraphNode node) {
 		this.edges.remove(node.id);
+		return this;
+	}
+
+	public GraphNode addUndirectedEdgeTo(GraphNode node) {
+		return addUndirectedEdgeTo(node, new HashMap<>());
+	}
+
+	public GraphNode addUndirectedEdgesTo(GraphNode... nodes) {
+		for (GraphNode node : nodes) {
+			addUndirectedEdgeTo(node);
+		}
+		return this;
+	}
+
+	public GraphNode addUndirectedEdgeTo(GraphNode node, Map<String, String> properties) {
+		this.edges.put(node.id, new GraphEdge(properties));
+		node.edges.put(this.id, new GraphEdge(properties));
 		return this;
 	}
 

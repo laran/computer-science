@@ -31,22 +31,22 @@ public class DjikstraTest {
 		// a -> b
 		Map<String, String> aToBEdgeProperties = new HashMap<>();
 		aToBEdgeProperties.put(DISTANCE, "10");
-		graph.getNode(a).addEdgeTo(graph.getNode(b), aToBEdgeProperties);
+		graph.getNode(a).addDirectedEdgeTo(graph.getNode(b), aToBEdgeProperties);
 
 		// a -> c
 		Map<String, String> aToCEdgeProperties = new HashMap<>();
 		aToCEdgeProperties.put(DISTANCE, "5");
-		graph.getNode(a).addEdgeTo(graph.getNode(c), aToCEdgeProperties);
+		graph.getNode(a).addDirectedEdgeTo(graph.getNode(c), aToCEdgeProperties);
 
 		// b -> d
 		Map<String, String> bToDEdgeProperties = new HashMap<>();
 		bToDEdgeProperties.put(DISTANCE, "7");
-		graph.getNode(b).addEdgeTo(graph.getNode(d), bToDEdgeProperties);
+		graph.getNode(b).addDirectedEdgeTo(graph.getNode(d), bToDEdgeProperties);
 
 		// c -> d
 		Map<String, String> cToDEdgeProperties = new HashMap<>();
 		cToDEdgeProperties.put(DISTANCE, "25");
-		graph.getNode(c).addEdgeTo(graph.getNode(d), cToDEdgeProperties);
+		graph.getNode(c).addDirectedEdgeTo(graph.getNode(d), cToDEdgeProperties);
 
 		Djikstra.Topology topology = Djikstra.analyze(graph, a);
 		Djikstra.Route route = topology.shortestRouteBetween(a, d);

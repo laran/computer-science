@@ -21,16 +21,16 @@ public class GraphTest {
 			.addNode(new GraphNode(d));
 
 		// a -> b
-		graph.getNode(a).addEdgeTo(graph.getNode(b));
+		graph.getNode(a).addDirectedEdgeTo(graph.getNode(b));
 
 		// a -> c
-		graph.getNode(a).addEdgeTo(graph.getNode(c));
+		graph.getNode(a).addDirectedEdgeTo(graph.getNode(c));
 
 		// b -> d
-		graph.getNode(b).addEdgeTo(graph.getNode(d));
+		graph.getNode(b).addDirectedEdgeTo(graph.getNode(d));
 
 		// c -> a
-		graph.getNode(c).addEdgeTo(graph.getNode(a));
+		graph.getNode(c).addDirectedEdgeTo(graph.getNode(a));
 
 		assertThat(graph.getNode(a), notNullValue());
 		assertThat(graph.getNode("e"), nullValue());
