@@ -100,6 +100,12 @@ public class EggDropSolver {
 		int lo = 1;
 		int hi = nFloors;
 
+		// Use binary search to converge more quickly on the minimum value of mid
+		// that will allow us to cover all nFloors with kEggs broken eggs in the
+		// worst case scenario (which is that the correct floor is discovered on
+		// the very top floor or the very top bucket.
+
+		// We could use linear search. But binary search for this value is faster.
 		while (lo < hi) {
 			int mid = (hi + lo) / 2;
 
@@ -115,14 +121,22 @@ public class EggDropSolver {
 		return lo;
 	}
 
-	private static long binomial(int mid, int nFloors, int kEggs) {
+	private static int binomial(int mid, int nFloors, int kEggs) {
 		int sum = 0, aux = 1;
 
-		for (int i = 1; i <= kEggs; i++) {
-			aux *= mid - i + 1;
-			aux /= i;
+		for (int maxBrokenEggs = 1; maxBrokenEggs <= kEggs; maxBrokenEggs++) {
+			aux = (aux * (mid - maxBrokenEggs + 1)) / maxBrokenEggs;
 			sum += aux;
 
+			// Watch the convergence in action
+			System.out.println(
+				String.format(
+					"mid=%s, maxBrokenEggs=%s, aux=%s, sum=%s", mid, maxBrokenEggs, aux, sum
+				)
+			);
+
+			// Short circuit because we know we're going to check whether or not
+			// sum is greater than nFloors in the code that calls this method
 			if (sum >= nFloors) {
 				break;
 			}
