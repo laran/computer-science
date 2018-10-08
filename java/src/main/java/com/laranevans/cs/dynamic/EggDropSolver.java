@@ -2,7 +2,10 @@
 package com.laranevans.cs.dynamic;
 
 /**
- *
+ * Three different solutions to the Egg Drop problem.
+ *   - recursive solution (slowest)
+ *   - dynamic programming solution (faster)
+ *   - mathematical solution (fastest)
  */
 public class EggDropSolver {
 
@@ -101,8 +104,10 @@ public class EggDropSolver {
 			int mid = (hi + lo) / 2;
 
 			if (binomial(mid, nFloors, kEggs) < nFloors) {
+				// choose the top half
 				lo = mid + 1;
 			} else {
+				// choose the bottom half
 				hi = mid;
 			}
 		}
@@ -110,14 +115,15 @@ public class EggDropSolver {
 		return lo;
 	}
 
-	private static long binomial(int x, int n, int k) {
+	private static long binomial(int mid, int nFloors, int kEggs) {
 		int sum = 0, aux = 1;
 
-		for (int i = 1; i <= k; ++i) {
-			aux *= x - i + 1;
+		for (int i = 1; i <= kEggs; i++) {
+			aux *= mid - i + 1;
 			aux /= i;
 			sum += aux;
-			if (sum >= n) {
+
+			if (sum >= nFloors) {
 				break;
 			}
 		}
