@@ -39,21 +39,6 @@ public class EggDropSolverTest {
 		solveWithDPAndCheck(100, 4, 8);
 	}
 
-	@Test
-	public void shouldFind14With100FloorsAnd2EggsUsingBinomials() {
-		assertThat(EggDropSolver.solveWithBinomials(100, 2), is(equalTo(14)));
-	}
-
-	@Test
-	public void shouldFind9With100FloorsAnd3EggsUsingBinomials() {
-		assertThat(EggDropSolver.solveWithBinomials(100, 3), is(equalTo(9)));
-	}
-
-	@Test
-	public void shouldFind8With100FloorsAnd4EggsUsingBinomials() {
-		assertThat(EggDropSolver.solveWithBinomials(100, 4), is(equalTo(8)));
-	}
-
 	private void solveWithDPAndCheck(int n, int k, int expectedResult) {
 		int[][] memo = EggDropSolver.solveWithDP(n, k);
 		show(memo);
@@ -65,6 +50,4 @@ public class EggDropSolverTest {
 			System.out.println(Arrays.toString(memo[i]));
 		}
 	}
-
-
 }

@@ -5,7 +5,7 @@ package com.laranevans.cs.dynamic;
  * Three different solutions to the Egg Drop problem.
  *   - recursive solution (slowest)
  *   - dynamic programming solution (faster)
- *   - mathematical solution (fastest)
+ *   - mathematical solution (fastest) (See: https://brilliant.org/wiki/egg-dropping/#a-better-approach)
  */
 public class EggDropSolver {
 
@@ -93,55 +93,5 @@ public class EggDropSolver {
 		}
 
 		return memo;
-	}
-
-	// This solves in O(kEggs * log(nFloors)) time and O(1) space
-	public static int solveWithBinomials(int nFloors, int kEggs) {
-		int lo = 1;
-		int hi = nFloors;
-
-		// Use binary search to converge more quickly on the minimum value of mid
-		// that will allow us to cover all nFloors with kEggs broken eggs in the
-		// worst case scenario (which is that the correct floor is discovered on
-		// the very top floor or the very top bucket.
-
-		// We could use linear search. But binary search for this value is faster.
-		while (lo < hi) {
-			int mid = (hi + lo) / 2;
-
-			if (binomial(mid, nFloors, kEggs) < nFloors) {
-				// choose the top half
-				lo = mid + 1;
-			} else {
-				// choose the bottom half
-				hi = mid;
-			}
-		}
-
-		return lo;
-	}
-
-	private static int binomial(int mid, int nFloors, int kEggs) {
-		int sum = 0, aux = 1;
-
-		for (int maxBrokenEggs = 1; maxBrokenEggs <= kEggs; maxBrokenEggs++) {
-			aux = (aux * (mid - maxBrokenEggs + 1)) / maxBrokenEggs;
-			sum += aux;
-
-			// Watch the convergence in action
-			System.out.println(
-				String.format(
-					"mid=%s, maxBrokenEggs=%s, aux=%s, sum=%s", mid, maxBrokenEggs, aux, sum
-				)
-			);
-
-			// Short circuit because we know we're going to check whether or not
-			// sum is greater than nFloors in the code that calls this method
-			if (sum >= nFloors) {
-				break;
-			}
-		}
-
-		return sum;
 	}
 }
