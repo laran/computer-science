@@ -65,4 +65,12 @@ public class GraphNode {
 		return edges;
 	}
 
+	@Override
+	public String toString() {
+		return "GraphNode{" +
+			"id='" + id + '\'' +
+			", properties=" + properties +
+			", edges=" + edges +
+			'}';
+	}
 }

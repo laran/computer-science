@@ -3,6 +3,7 @@ package com.laranevans.cs.structures.graphs;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class GraphEdge {
 	private Map<String, String> properties;
@@ -17,5 +18,14 @@ public class GraphEdge {
 
 	public Map<String, String> getProperties() {
 		return properties;
+	}
+
+	@Override
+	public String toString() {
+		return "GraphEdge{" +
+			"properties=" + properties.keySet().stream()
+			.map(k -> String.format("%s=%s", k, properties.get(k))).collect(Collectors.joining(", "))
+			+
+			'}';
 	}
 }

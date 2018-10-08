@@ -62,4 +62,11 @@ public class Graph {
 	public Map<String, GraphNode> getNodes() {
 		return nodes;
 	}
+
+	@Override
+	public String toString() {
+		return "Graph{" +
+			"nodes=" + nodes +
+			'}';
+	}
 }
