@@ -19,4 +19,12 @@ public class MapHelper {
 	public static <K, U> Collector<Map.Entry<K, U>, ?, ConcurrentMap<K, U>> entriesToConcurrentMap() {
 		return Collectors.toConcurrentMap((e) -> e.getKey(), (e) -> e.getValue());
 	}
+
+	public static String stringify(Map<String, String> properties) {
+		return properties.keySet().stream()
+			.sorted()
+			.map(name -> name + "=" + properties.get(name))
+			.collect(Collectors.joining(", "));
+	}
+
 }
