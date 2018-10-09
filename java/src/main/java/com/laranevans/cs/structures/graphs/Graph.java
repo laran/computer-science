@@ -63,6 +63,19 @@ public class Graph {
 		return nodes;
 	}
 
+	/**
+	 * Convenience method to get all Edges.
+	 *
+	 * @return
+	 */
+	public Map<String, Map<String, GraphEdge>> getEdges() {
+		Map<String, Map<String, GraphEdge>> edges = new HashMap<>();
+		for (String nodeId : this.getNodes().keySet()) {
+			edges.put(nodeId, getNode(nodeId).getEdges());
+		}
+		return edges;
+	}
+
 	@Override
 	public String toString() {
 		return "Graph{" +
