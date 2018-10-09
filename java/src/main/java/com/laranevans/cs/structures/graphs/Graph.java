@@ -4,6 +4,17 @@ package com.laranevans.cs.structures.graphs;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A graph as an adjacency list backed by a map.
+ * <p>
+ * I chose an adjacency list instead of an edge list or an adjacency matrix for these reasons:
+ * - An edge list maintains a global state whereas an adjacency list maintains local state.
+ * Local state scales better.
+ * - An adjacency matrix isn't as flexible. It requires a global state and for all nodes to have
+ * integer ids (instead of strings) and for the graph to have a fixed-size.
+ * <p>
+ * So, an adjacency list is more flexible and more scalable, which is why I chose it.
+ */
 public class Graph {
 	private Map<String, GraphNode> nodes;
 

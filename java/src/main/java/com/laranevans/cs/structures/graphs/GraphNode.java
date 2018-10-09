@@ -3,6 +3,7 @@ package com.laranevans.cs.structures.graphs;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class GraphNode {
 
@@ -43,12 +44,14 @@ public class GraphNode {
 		return this;
 	}
 
-	public GraphNode addDirectedEdgeTo(GraphNode node, Map<String, String> properties) {
-		this.edges.put(node.id, new GraphEdge(properties));
+	public synchronized GraphNode addDirectedEdgeTo(GraphNode node, Map<String, String> properties) {
+		if (!this.edges.containsKey(node.getId())) {
+			this.edges.put(node.id, new GraphEdge(properties));
+		}
 		return this;
 	}
 
-	public GraphNode removeDirectedEdgeTo(GraphNode node) {
+	public synchronized GraphNode removeDirectedEdgeTo(GraphNode node) {
 		this.edges.remove(node.id);
 		return this;
 	}
@@ -64,10 +67,44 @@ public class GraphNode {
 		return this;
 	}
 
-	public GraphNode addUndirectedEdgeTo(GraphNode node, Map<String, String> properties) {
-		this.edges.put(node.id, new GraphEdge(properties));
-		node.edges.put(this.id, new GraphEdge(properties));
+	public synchronized GraphNode addUndirectedEdgeTo(GraphNode node, Map<String, String> properties) {
+		synchronized (node) {
+			// Have both nodes share the SAME edge so that changes to edge properties are
+			// visible from both Nodes.
+
+			GraphEdge edge = null;
+
+			// Don't overwrite an edge that already exists.
+
+			if (!this.edges.containsKey(node.getId())) {
+				if (node.edges.containsKey(this.id)) {
+					// an edge exists from node -> this but not from this -> node
+					edge = node.getEdges().get(this.id);
+					this.edges.put(node.getId(), edge);
+				}
+			} else if (!node.edges.containsKey(this.id)) {
+				// an edge exists from this -> node but not from node -> this
+				edge = this.edges.get(node.getId());
+				node.edges.put(this.id, edge);
+			}
+
+			if (Objects.isNull(edge)) {
+				edge = new GraphEdge(properties);
+				this.edges.put(node.id, edge);
+				node.edges.put(this.id, edge);
+			} else {
+				edge.setProperties(properties);
+			}
+		}
+
 		return this;
+	}
+
+	synchronized public void removeUndirectedEdgeTo(GraphNode node) {
+		synchronized (node) {
+			this.edges.remove(node.getId());
+			node.edges.remove(this.getId());
+		}
 	}
 
 	public String getId() {
