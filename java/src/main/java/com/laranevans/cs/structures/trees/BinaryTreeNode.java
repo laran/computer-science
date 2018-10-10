@@ -10,9 +10,10 @@ import java.util.Objects;
  */
 public class BinaryTreeNode<V extends Comparable> {
 	private V value;
-	private BinaryTreeNode parent;
 	private BinaryTreeNode left;
 	private BinaryTreeNode right;
+	// Keep track of the parent makes rotation more straightforward
+	private BinaryTreeNode parent;
 
 	public BinaryTreeNode(V value) {
 		this(value, null, null);
