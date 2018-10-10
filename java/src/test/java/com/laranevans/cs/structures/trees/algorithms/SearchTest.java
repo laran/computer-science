@@ -23,10 +23,10 @@ public class SearchTest {
 	@BeforeEach
 	public void setup() {
 		rightRotated = new BinarySearchTreeNode<>(10);
-		Arrays.stream(new int[]{5, 15, 13, 18}).forEach(i -> rightRotated.add(i));
+		Arrays.stream(new int[]{5, 15, 13, 18}).forEach(i -> Insert.insert(rightRotated, i));
 
 		leftRotated = new BinarySearchTreeNode<>(15);
-		Arrays.stream(new int[]{10, 18, 5, 13}).forEach(i -> leftRotated.add(i));
+		Arrays.stream(new int[]{10, 18, 5, 13}).forEach(i -> Insert.insert(leftRotated, i));
 	}
 
 	@Test
