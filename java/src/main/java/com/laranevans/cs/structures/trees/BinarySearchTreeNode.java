@@ -1,14 +1,27 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.trees;
 
-import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * A BinaryTreeNode with additional methods that are enabled by the ordering constraints
+ * of a BinarySearchTree.
+ *
+ * @param &lt;V&gt;
+ */
 public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 	public BinarySearchTreeNode(V value) {
 		super(value);
 	}
 
+	/**
+	 * Create a new node at the correct position in the tree under this node
+	 * based on the value in the context of the binary search tree ordering
+	 * constraints.
+	 *
+	 * @param value
+	 * @return
+	 */
 	public BinarySearchTreeNode add(V value) {
 		if (Objects.isNull(value)) {
 			return this;
@@ -37,6 +50,12 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 		return this;
 	}
 
+	/**
+	 * Find a node with the given value (if it exists).
+	 *
+	 * @param value
+	 * @return
+	 */
 	public BinarySearchTreeNode find(V value) {
 		if (Objects.isNull(value)) {
 			return null;
