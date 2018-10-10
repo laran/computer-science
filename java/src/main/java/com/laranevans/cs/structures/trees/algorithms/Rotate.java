@@ -5,11 +5,15 @@ import com.laranevans.cs.structures.trees.BinaryTreeNode;
 
 import java.util.Objects;
 
+/**
+ * Left and right rotations for BinaryTreeNodes.
+ */
 public class Rotate {
 
 	/**
 	 *
-	 * @return the node that rotated into the same position
+	 * @param node
+	 * @return the node that rotated into the same position as node
 	 */
 	public static BinaryTreeNode left(BinaryTreeNode node) {
 		if (Objects.isNull(node.getRight())) {
@@ -37,7 +41,8 @@ public class Rotate {
 
 	/**
 	 *
-	 * @return the node that rotated into the same position
+	 * @param node
+	 * @return the node that rotated into the same position as node
 	 */
 	public static BinaryTreeNode right(BinaryTreeNode node) {
 		if (Objects.isNull(node.getLeft())) {
