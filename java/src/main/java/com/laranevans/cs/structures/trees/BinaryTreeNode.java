@@ -63,23 +63,23 @@ public class BinaryTreeNode<V extends Comparable> {
 			return this;
 		}
 
-		BinaryTreeNode x = this;
-		BinaryTreeNode y = this.right;
-		this.right = y.left;
-		if (!Objects.isNull(y.left)) {
-			y.left.parent = x;
+		BinaryTreeNode oldRoot = this;
+		BinaryTreeNode newRoot = this.right;
+		this.right = newRoot.left;
+		if (!Objects.isNull(newRoot.left)) {
+			newRoot.left.parent = oldRoot;
 		}
-		y.parent = x.parent;
-		if (!Objects.isNull(x.parent)) {
+		newRoot.parent = oldRoot.parent;
+		if (!Objects.isNull(oldRoot.parent)) {
 			if (this == this.parent.left) {
-				x.parent.left = y;
-			} else if (!Objects.isNull(x.parent)) {
-				x.parent.right = y;
+				oldRoot.parent.left = newRoot;
+			} else {
+				oldRoot.parent.right = newRoot;
 			}
 		}
-		y.left = x;
-		x.parent = y;
-		return y;
+		newRoot.left = oldRoot;
+		oldRoot.parent = newRoot;
+		return newRoot;
 	}
 
 	/**
@@ -91,23 +91,23 @@ public class BinaryTreeNode<V extends Comparable> {
 			return this;
 		}
 
-		BinaryTreeNode y = this;
-		BinaryTreeNode x = this.left;
-		y.left = x.right;
-		if (!Objects.isNull(x.getRight())) {
-			x.right.parent = y;
+		BinaryTreeNode oldRoot = this;
+		BinaryTreeNode newRoot = this.left;
+		oldRoot.left = newRoot.right;
+		if (!Objects.isNull(newRoot.getRight())) {
+			newRoot.right.parent = oldRoot;
 		}
-		x.parent = y.parent;
-		if (!Objects.isNull(y.parent)) {
+		newRoot.parent = oldRoot.parent;
+		if (!Objects.isNull(oldRoot.parent)) {
 			if (this == this.parent.right) {
-				y.parent.right = x;
-			} else if (!Objects.isNull(y.parent)) {
-				y.parent.left = x;
+				oldRoot.parent.right = newRoot;
+			} else {
+				oldRoot.parent.left = newRoot;
 			}
 		}
-		x.right = y;
-		y.parent = x;
+		newRoot.right = oldRoot;
+		oldRoot.parent = newRoot;
 
-		return x;
+		return newRoot;
 	}
 }

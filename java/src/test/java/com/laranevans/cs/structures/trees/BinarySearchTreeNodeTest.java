@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 @DisplayName("Binary Search Tree")
 public class BinarySearchTreeNodeTest {
@@ -50,5 +51,38 @@ public class BinarySearchTreeNodeTest {
 	public void shouldRotateRightProperly() {
 		validateLeftRotated(leftRotated);
 		validateRightRotated((BinarySearchTreeNode) leftRotated.rotateRight());
+	}
+
+	@Test
+	public void shouldFindValueAtRoot() {
+		BinarySearchTreeNode ten = rightRotated.searchDepthFirst(10);
+		assertThat(ten.getLeft().getValue(), is(equalTo(5)));
+		assertThat(ten.getRight().getValue(), is(equalTo(15)));
+	}
+
+	@Test
+	public void shouldFindValueInLeftSubtree() {
+		BinarySearchTreeNode ten = leftRotated.searchDepthFirst(5);
+		assertThat(ten.getValue(), is(equalTo(5)));
+		assertThat(ten.getLeft(), is(nullValue()));
+		assertThat(ten.getRight(), is(nullValue()));
+	}
+
+	@Test
+	public void shouldFindValueInRightSubtree() {
+		BinarySearchTreeNode thirteen = rightRotated.searchDepthFirst(13);
+		assertThat(thirteen.getValue(), is(equalTo(13)));
+		assertThat(thirteen.getLeft(), is(nullValue()));
+		assertThat(thirteen.getRight(), is(nullValue()));
+	}
+
+	@Test
+	public void shouldNotFindAValueNotInTheTree() {
+		assertThat(rightRotated.searchDepthFirst(45), is(nullValue()));
+	}
+
+	@Test
+	public void shouldHandleTryingToFindANullValue() {
+		assertThat(rightRotated.searchDepthFirst(null), is(nullValue()));
 	}
 }

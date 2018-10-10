@@ -10,8 +10,12 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 	}
 
 	public BinarySearchTreeNode insert(V value) {
+		if(Objects.isNull(value)) {
+			return this;
+		}
+
 		BinarySearchTreeNode node = this;
-		while(!Objects.isNull(node)) {
+		while (!Objects.isNull(node)) {
 			if (value.compareTo(node.getValue()) == 0) {
 				return node; // value already exists
 			} else if (value.compareTo(node.getValue()) < 0) {
@@ -39,4 +43,23 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 		});
 		return this;
 	}
+
+	public BinarySearchTreeNode searchDepthFirst(V value) {
+		if (Objects.isNull(value)) {
+			return null;
+		}
+
+		BinarySearchTreeNode node = this;
+		while (!Objects.isNull(node)) {
+			if (value.compareTo(node.getValue()) == 0) {
+				return node;
+			} else if (value.compareTo(node.getValue()) > 0) {
+				node = (BinarySearchTreeNode) node.getRight();
+			} else {
+				node = (BinarySearchTreeNode) node.getLeft();
+			}
+		}
+		return node;
+	}
+
 }
