@@ -1,6 +1,7 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.trees.algorithms;
 
+import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
 import com.laranevans.cs.structures.trees.BinaryTreeNode;
 import com.laranevans.cs.structures.trees.BinaryTreeNodeVisitor;
 
@@ -50,31 +51,34 @@ public class Traverse {
 	}
 
 	/**
-	 * In-order, depth-first traversal
+	 * In-order, depth-first traversal.
 	 *
-	 * @param root
+	 * Applies only to BinarySearchTreeNode because a basic BinaryTree has no ordering constraint regarding
+	 * the relation between a node and it's left and right child.
+	 *
+	 * @param root (restricted to BinarySearchTreeNode, not just BinaryTreeNode)
 	 * @param visitor
 	 * @return
 	 */
-	public static BinaryTreeNode inOrder(BinaryTreeNode root, BinaryTreeNodeVisitor visitor) {
+	public static BinarySearchTreeNode inOrder(BinarySearchTreeNode root, BinaryTreeNodeVisitor visitor) {
 		if (root == null) {
 			return null;
 		}
 
-		Stack<BinaryTreeNode> stack = new Stack<>();
-		BinaryTreeNode node = root;
+		Stack<BinarySearchTreeNode> stack = new Stack<>();
+		BinarySearchTreeNode node = root;
 
 		while(node != null || !stack.isEmpty()) {
 
 			if(node != null) {
 				stack.push(node);
-				node = node.getLeft();
+				node = (BinarySearchTreeNode) node.getLeft();
 			} else {
 				node = stack.pop();
 				if (visitor.visit(node)) {
 					return node;
 				} else {
-					node = node.getRight();
+					node = (BinarySearchTreeNode) node.getRight();
 				}
 			}
 		}
