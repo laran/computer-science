@@ -38,9 +38,7 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 	}
 
 	public BinarySearchTreeNode insertAll(V... values) {
-		Arrays.stream(values).forEach(value -> {
-			insert(value);
-		});
+		Arrays.stream(values).forEach(this::insert);
 		return this;
 	}
 
