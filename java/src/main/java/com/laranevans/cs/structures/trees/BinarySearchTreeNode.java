@@ -9,7 +9,7 @@ import java.util.Objects;
  *
  * @param &lt;V&gt;
  */
-public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
+public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode<V> {
 	public BinarySearchTreeNode(V value) {
 		super(value);
 	}
@@ -22,12 +22,12 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 	 * @param value
 	 * @return
 	 */
-	public BinarySearchTreeNode add(V value) {
+	public BinarySearchTreeNode<V> add(V value) {
 		if (Objects.isNull(value)) {
 			return this;
 		}
 
-		BinarySearchTreeNode node = this;
+		BinarySearchTreeNode<V> node = this;
 		while (!Objects.isNull(node)) {
 			if (value.compareTo(node.getValue()) == 0) {
 				return node; // value already exists
@@ -36,42 +36,18 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 					node.setLeft(new BinarySearchTreeNode<>(value));
 					break;
 				} else {
-					node = (BinarySearchTreeNode) node.getLeft();
+					node = (BinarySearchTreeNode<V>) node.getLeft();
 				}
 			} else {
 				if (Objects.isNull(node.getRight())) {
 					node.setRight(new BinarySearchTreeNode<>(value));
 					break;
 				} else {
-					node = (BinarySearchTreeNode) node.getRight();
+					node = (BinarySearchTreeNode<V>) node.getRight();
 				}
 			}
 		}
 		return this;
-	}
-
-	/**
-	 * Find a node with the given value (if it exists).
-	 *
-	 * @param value
-	 * @return
-	 */
-	public BinarySearchTreeNode find(V value) {
-		if (Objects.isNull(value)) {
-			return null;
-		}
-
-		BinarySearchTreeNode node = this;
-		while (!Objects.isNull(node)) {
-			if (value.compareTo(node.getValue()) == 0) {
-				return node;
-			} else if (value.compareTo(node.getValue()) > 0) {
-				node = (BinarySearchTreeNode) node.getRight();
-			} else {
-				node = (BinarySearchTreeNode) node.getLeft();
-			}
-		}
-		return node;
 	}
 
 }
