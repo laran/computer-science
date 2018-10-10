@@ -9,11 +9,11 @@ import java.util.Objects;
  * @param &lt;V&gt;
  */
 public class BinaryTreeNode<V extends Comparable> {
-	private V value;
-	private BinaryTreeNode left;
-	private BinaryTreeNode right;
+	protected V value;
+	protected BinaryTreeNode left;
+	protected BinaryTreeNode right;
 	// Keep track of the parent makes rotation more straightforward
-	private BinaryTreeNode parent;
+	protected BinaryTreeNode parent;
 
 	public BinaryTreeNode(V value) {
 		this(value, null, null);
@@ -38,8 +38,12 @@ public class BinaryTreeNode<V extends Comparable> {
 	}
 
 	public void setLeft(BinaryTreeNode left) {
+		setLeft(left, true);
+	}
+
+	public void setLeft(BinaryTreeNode left, boolean setParent) {
 		this.left = left;
-		if (!Objects.isNull(left)) {
+		if (!Objects.isNull(left) && setParent) {
 			left.parent = this;
 		}
 	}
@@ -49,66 +53,22 @@ public class BinaryTreeNode<V extends Comparable> {
 	}
 
 	public void setRight(BinaryTreeNode right) {
+		setRight(right, true);
+	}
+
+	public void setRight(BinaryTreeNode right, boolean setParent) {
 		this.right = right;
-		if (!Objects.isNull(right)) {
+		if (!Objects.isNull(right) && setParent) {
 			right.parent = this;
 		}
 	}
 
-	/**
-	 *
-	 * @return the node that rotated into the same position
-	 */
-	public BinaryTreeNode rotateLeft() {
-		if (Objects.isNull(this.right)) {
-			return this;
-		}
-
-		BinaryTreeNode oldRoot = this;
-		BinaryTreeNode newRoot = this.right;
-		this.right = newRoot.left;
-		if (!Objects.isNull(newRoot.left)) {
-			newRoot.left.parent = oldRoot;
-		}
-		newRoot.parent = oldRoot.parent;
-		if (!Objects.isNull(oldRoot.parent)) {
-			if (this == this.parent.left) {
-				oldRoot.parent.left = newRoot;
-			} else {
-				oldRoot.parent.right = newRoot;
-			}
-		}
-		newRoot.left = oldRoot;
-		oldRoot.parent = newRoot;
-		return newRoot;
+	public BinaryTreeNode getParent() {
+		return parent;
 	}
 
-	/**
-	 *
-	 * @return the node that rotated into the same position
-	 */
-	public BinaryTreeNode rotateRight() {
-		if (Objects.isNull(this.left)) {
-			return this;
-		}
-
-		BinaryTreeNode oldRoot = this;
-		BinaryTreeNode newRoot = this.left;
-		oldRoot.left = newRoot.right;
-		if (!Objects.isNull(newRoot.getRight())) {
-			newRoot.right.parent = oldRoot;
-		}
-		newRoot.parent = oldRoot.parent;
-		if (!Objects.isNull(oldRoot.parent)) {
-			if (this == this.parent.right) {
-				oldRoot.parent.right = newRoot;
-			} else {
-				oldRoot.parent.left = newRoot;
-			}
-		}
-		newRoot.right = oldRoot;
-		oldRoot.parent = newRoot;
-
-		return newRoot;
+	public void setParent(BinaryTreeNode parent) {
+		this.parent = parent;
 	}
+
 }

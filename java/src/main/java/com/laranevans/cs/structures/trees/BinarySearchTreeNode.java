@@ -9,8 +9,8 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 		super(value);
 	}
 
-	public BinarySearchTreeNode insert(V value) {
-		if(Objects.isNull(value)) {
+	public BinarySearchTreeNode add(V value) {
+		if (Objects.isNull(value)) {
 			return this;
 		}
 
@@ -20,14 +20,14 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 				return node; // value already exists
 			} else if (value.compareTo(node.getValue()) < 0) {
 				if (Objects.isNull(node.getLeft())) {
-					node.setLeft(new BinarySearchTreeNode(value));
+					node.setLeft(new BinarySearchTreeNode<>(value));
 					break;
 				} else {
 					node = (BinarySearchTreeNode) node.getLeft();
 				}
 			} else {
 				if (Objects.isNull(node.getRight())) {
-					node.setRight(new BinarySearchTreeNode(value));
+					node.setRight(new BinarySearchTreeNode<>(value));
 					break;
 				} else {
 					node = (BinarySearchTreeNode) node.getRight();
@@ -37,12 +37,7 @@ public class BinarySearchTreeNode<V extends Comparable> extends BinaryTreeNode {
 		return this;
 	}
 
-	public BinarySearchTreeNode insertAll(V... values) {
-		Arrays.stream(values).forEach(this::insert);
-		return this;
-	}
-
-	public BinarySearchTreeNode searchDepthFirst(V value) {
+	public BinarySearchTreeNode find(V value) {
 		if (Objects.isNull(value)) {
 			return null;
 		}
