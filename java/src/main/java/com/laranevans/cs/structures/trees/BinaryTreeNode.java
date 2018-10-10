@@ -12,7 +12,7 @@ public class BinaryTreeNode<V extends Comparable> {
 	protected V value;
 	protected BinaryTreeNode left;
 	protected BinaryTreeNode right;
-	// Keep track of the parent makes rotation more straightforward
+	// Keep track of the parent to make rotation more straightforward
 	protected BinaryTreeNode parent;
 
 	public BinaryTreeNode(V value) {
@@ -41,6 +41,7 @@ public class BinaryTreeNode<V extends Comparable> {
 		setLeft(left, true);
 	}
 
+	// It's handy to not automatically set the parent during rotation
 	public void setLeft(BinaryTreeNode left, boolean setParent) {
 		this.left = left;
 		if (!Objects.isNull(left) && setParent) {
@@ -56,6 +57,7 @@ public class BinaryTreeNode<V extends Comparable> {
 		setRight(right, true);
 	}
 
+	// It's handy to not automatically set the parent during rotation
 	public void setRight(BinaryTreeNode right, boolean setParent) {
 		this.right = right;
 		if (!Objects.isNull(right) && setParent) {
