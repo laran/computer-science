@@ -1,8 +1,6 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.trees;
 
-import java.util.Objects;
-
 /**
  * A BinaryTreeNode with additional methods that are enabled by the ordering constraints
  * of a BinarySearchTree.

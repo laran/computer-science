@@ -1,7 +1,6 @@
 /* (C) Copyright 2017-2018 Laran Evans */
 package com.laranevans.cs.structures.trees;
 
-import java.util.Objects;
 
 /**
  * A basic TreeNode for use in a BinaryTree.
@@ -48,7 +47,7 @@ public class BinaryTreeNode<V extends Comparable> {
 	// It's handy to not automatically set the parent during rotation
 	public void setLeft(BinaryTreeNode<V> left, boolean setParent) {
 		this.left = left;
-		if (!Objects.isNull(left) && setParent) {
+		if (left != null && setParent) {
 			left.parent = this;
 		}
 	}
@@ -64,7 +63,7 @@ public class BinaryTreeNode<V extends Comparable> {
 	// It's handy to not automatically set the parent during rotation
 	public void setRight(BinaryTreeNode<V> right, boolean setParent) {
 		this.right = right;
-		if (!Objects.isNull(right) && setParent) {
+		if (right != null && setParent) {
 			right.parent = this;
 		}
 	}

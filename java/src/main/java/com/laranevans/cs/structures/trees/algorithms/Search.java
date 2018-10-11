@@ -4,7 +4,6 @@ package com.laranevans.cs.structures.trees.algorithms;
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
 
 import java.util.Comparator;
-import java.util.Objects;
 
 /**
  * Search a BinarySearchTreeNode for a given value.
@@ -34,15 +33,15 @@ public class Search {
 	 */
 	public static <V extends Comparable> BinarySearchTreeNode<V> toFind(
 		BinarySearchTreeNode<V> root, V value, Comparator<V> comparator) {
-		if (Objects.isNull(root)) {
+		if (root == null) {
 			throw new IllegalArgumentException("Unable to search from a null root");
 		}
-		if (Objects.isNull(value)) {
+		if (value == null) {
 			throw new IllegalArgumentException("Unable to compare null values");
 		}
 
 		BinarySearchTreeNode<V> node = root;
-		while (!Objects.isNull(node)) {
+		while (node != null) {
 			int comparison = comparator.compare(value, node.getValue());
 			if (comparison == 0) {
 				return node;
