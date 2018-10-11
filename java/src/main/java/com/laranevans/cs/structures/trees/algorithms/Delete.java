@@ -6,16 +6,25 @@ import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
 public class Delete {
 
 	public static <V extends Comparable> BinarySearchTreeNode<V> delete(BinarySearchTreeNode<V> current, V value) {
+		// Recurse iteratively to the parent of the node to delete
+		BinarySearchTreeNode<V> parent = Search.search(current, value).getParent();
+		if (parent == null) {
+			throw new IllegalArgumentException("Cannot delete the value at the root node");
+		}
+		return hibbard(parent, value);
+	}
+
+	// Hibbard's algorithm
+	private static <V extends Comparable> BinarySearchTreeNode<V> hibbard(BinarySearchTreeNode<V> current, V value) {
 		if (current == null || value == null) {
 			return null;
 		}
 
-		// Hibbard's algorithm
 		int comparison = value.compareTo(current.getValue());
 		if (comparison < 0) {
-			current.setLeft(delete(current.getLeft(), value));
+			current.setLeft(hibbard(current.getLeft(), value));
 		} else if (comparison > 0) {
-			current.setRight(delete(current.getRight(), value));
+			current.setRight(hibbard(current.getRight(), value));
 		} else {
 			if (current.getRight() == null) {
 				return current.getLeft();

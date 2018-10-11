@@ -3,10 +3,7 @@ package com.laranevans.cs.structures.trees.algorithms;
 
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
 import com.laranevans.cs.structures.trees.TreePrinter;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,12 +37,9 @@ public class DeleteTest {
 	}
 
 	@Test
-	public void shouldDeleteRootNode() {
-		BinarySearchTreeNode<Integer> newRoot = Delete.delete(root, 10);
-		assertThat(newRoot.getValue(), is(equalTo(13)));
-		assertThat(newRoot.getLeft().getValue(), is(equalTo(5)));
-		assertThat(newRoot.getRight().getValue(), is(equalTo(15)));
-		assertThat(newRoot.getParent(), is(nullValue()));
+	public void shouldNotDeleteValueAtRootNode() {
+		Assertions.assertThrows(
+			IllegalArgumentException.class, () -> Delete.delete(root, 10));
 	}
 
 	@Test
