@@ -31,14 +31,14 @@ public class SearchTest {
 
 	@Test
 	public void shouldFindValueAtRoot() {
-		BinarySearchTreeNode ten = Search.toFind(rightRotated, 10);
+		BinarySearchTreeNode ten = Search.search(rightRotated, 10);
 		assertThat(ten.getLeft().getValue(), is(equalTo(5)));
 		assertThat(ten.getRight().getValue(), is(equalTo(15)));
 	}
 
 	@Test
 	public void shouldFindValueInLeftSubtree() {
-		BinarySearchTreeNode ten = Search.toFind(leftRotated, 5);
+		BinarySearchTreeNode ten = Search.search(leftRotated, 5);
 		assertThat(ten.getValue(), is(equalTo(5)));
 		assertThat(ten.getLeft(), is(nullValue()));
 		assertThat(ten.getRight(), is(nullValue()));
@@ -46,7 +46,7 @@ public class SearchTest {
 
 	@Test
 	public void shouldFindValueInRightSubtree() {
-		BinarySearchTreeNode thirteen = Search.toFind(rightRotated, 13);
+		BinarySearchTreeNode thirteen = Search.search(rightRotated, 13);
 		assertThat(thirteen.getValue(), is(equalTo(13)));
 		assertThat(thirteen.getLeft(), is(nullValue()));
 		assertThat(thirteen.getRight(), is(nullValue()));
@@ -54,7 +54,7 @@ public class SearchTest {
 
 	@Test
 	public void shouldNotFindAValueNotInTheTree() {
-		assertThat(Search.toFind(rightRotated, 45), is(nullValue()));
+		assertThat(Search.search(rightRotated, 45), is(nullValue()));
 	}
 
 	@Test
@@ -62,11 +62,11 @@ public class SearchTest {
 		// searching for a null value should throw an exception because null values
 		// cannot be safely compared to other values
 		Assertions.assertThrows(
-			IllegalArgumentException.class, () -> Search.toFind(rightRotated, null));
+			IllegalArgumentException.class, () -> Search.search(rightRotated, null));
 
 		// searching on a null root should throw an exception
 		Assertions.assertThrows(
-			IllegalArgumentException.class, () -> Search.toFind(null, null));
+			IllegalArgumentException.class, () -> Search.search(null, null));
 	}
 
 }

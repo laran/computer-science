@@ -18,8 +18,8 @@ public class Search {
 	 * @param &lt;V&gt;
 	 * @return
 	 */
-	public static <V extends Comparable> BinarySearchTreeNode<V> toFind(BinarySearchTreeNode<V> root, V value) {
-		return toFind(root, value, Comparator.naturalOrder());
+	public static <V extends Comparable> BinarySearchTreeNode<V> search(BinarySearchTreeNode<V> root, V value) {
+		return search(root, value, Comparator.naturalOrder());
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class Search {
 	 * @param &lt;V&gt;
 	 * @return
 	 */
-	public static <V extends Comparable> BinarySearchTreeNode<V> toFind(
+	public static <V extends Comparable> BinarySearchTreeNode<V> search(
 		BinarySearchTreeNode<V> root, V value, Comparator<V> comparator) {
 		if (root == null) {
 			throw new IllegalArgumentException("Unable to search from a null root");
