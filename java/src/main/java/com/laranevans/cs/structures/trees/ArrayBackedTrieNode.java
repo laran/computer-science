@@ -3,13 +3,13 @@ package com.laranevans.cs.structures.trees;
 
 /**
  * A TrieNode backed by an array that supports an arbitrarily large set of characters.
- *
+ * <p>
  * In comparison to the {@link MapBackedTrieNode}, because this class uses an array,
  * the children likely have better locality in memory and are therefore cached better,
  * making it faster to read.
- *
+ * <p>
  * This class defaults to using 256 characters to support the ASCII alphabet.
- *
+ * <p>
  * The 0-th element of the array represents the word terminator. This makes sense
  * because the 0-th character in the unicode character table is the null character.
  */

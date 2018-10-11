@@ -2,7 +2,6 @@
 package com.laranevans.cs.structures.trees.algorithms;
 
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
-import com.laranevans.cs.structures.trees.BinaryTreeNode;
 
 /**
  * Left and right rotations for BinarySearchTreeNodes.
@@ -10,7 +9,6 @@ import com.laranevans.cs.structures.trees.BinaryTreeNode;
 public class Rotate {
 
 	/**
-	 *
 	 * @param node
 	 * @return the node that rotated into the same position as node
 	 */
@@ -39,7 +37,6 @@ public class Rotate {
 	}
 
 	/**
-	 *
 	 * @param node
 	 * @return the node that rotated into the same position as node
 	 */

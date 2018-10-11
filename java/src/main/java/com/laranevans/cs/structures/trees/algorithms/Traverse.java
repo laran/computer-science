@@ -2,7 +2,6 @@
 package com.laranevans.cs.structures.trees.algorithms;
 
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
-import com.laranevans.cs.structures.trees.BinaryTreeNode;
 import com.laranevans.cs.structures.trees.BinarySearchTreeNodeVisitor;
 
 import java.util.LinkedList;
@@ -30,7 +29,7 @@ public class Traverse {
 		Stack<BinarySearchTreeNode<V>> stack = new Stack<>();
 		stack.push(root);
 
-		while(!stack.isEmpty()) {
+		while (!stack.isEmpty()) {
 			BinarySearchTreeNode<V> node = stack.pop();
 			if (visitor.visit(node)) {
 				return node;
@@ -51,11 +50,11 @@ public class Traverse {
 
 	/**
 	 * In-order, depth-first traversal.
-	 *
+	 * <p>
 	 * Applies only to BinarySearchTreeNode because a basic BinaryTree has no ordering constraint regarding
 	 * the relation between a node and it's left and right child.
 	 *
-	 * @param root (restricted to BinarySearchTreeNode, not just BinaryTreeNode)
+	 * @param root    (restricted to BinarySearchTreeNode, not just BinaryTreeNode)
 	 * @param visitor
 	 * @return
 	 */
@@ -67,9 +66,9 @@ public class Traverse {
 		Stack<BinarySearchTreeNode> stack = new Stack<>();
 		BinarySearchTreeNode node = root;
 
-		while(node != null || !stack.isEmpty()) {
+		while (node != null || !stack.isEmpty()) {
 
-			if(node != null) {
+			if (node != null) {
 				stack.push(node);
 				node = node.getLeft();
 			} else {
@@ -103,7 +102,7 @@ public class Traverse {
 
 		stackOne.push(root);
 
-		while(!stackOne.isEmpty()) {
+		while (!stackOne.isEmpty()) {
 			BinarySearchTreeNode<V> node = stackOne.pop();
 			stackTwo.push(node);
 
@@ -134,7 +133,7 @@ public class Traverse {
 		Queue<BinarySearchTreeNode<V>> q = new LinkedList<>();
 		q.add(root);
 
-		while(!q.isEmpty()) {
+		while (!q.isEmpty()) {
 			BinarySearchTreeNode<V> node = q.poll();
 			if (visitor.visit(node)) {
 				return node;

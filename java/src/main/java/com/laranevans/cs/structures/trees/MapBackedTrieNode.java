@@ -44,7 +44,7 @@ public class MapBackedTrieNode implements TrieNode {
 	@Override
 	public TrieNode add(String word) {
 		MapBackedTrieNode node = this;
-		for(int i = 0; i < word.length(); i++) {
+		for (int i = 0; i < word.length(); i++) {
 			Character c = word.charAt(i);
 			if (!node.children.containsKey(c)) {
 				node.children.put(c, new MapBackedTrieNode(c));
@@ -58,7 +58,7 @@ public class MapBackedTrieNode implements TrieNode {
 	@Override
 	public TrieNode contains(String word) {
 		MapBackedTrieNode node = this;
-		for(int i = 0; i < word.length(); i++) {
+		for (int i = 0; i < word.length(); i++) {
 			Character c = word.charAt(i);
 			if (!node.children.containsKey(c)) {
 				return null;

@@ -13,7 +13,7 @@ public interface BinarySearchTreeNodeVisitor {
 	 * find a node with a given value, when you find the value
 	 * you're looking for, return true to exit traversal and
 	 * return that node).
-	 *
+	 * <p>
 	 * Traversal methods will return the Node it just visited
 	 * when visit(BinaryTreeNode) return true.
 	 *
