@@ -3,9 +3,9 @@ package com.laranevans.cs.structures.trees;
 
 /**
  * Standard interface for operations to be executed while
- * traversing a BinaryTreeNode.
+ * traversing a BinarySearchTreeNode.
  */
-public interface BinaryTreeNodeVisitor {
+public interface BinarySearchTreeNodeVisitor {
 	/**
 	 * Standard interface for visiting a node during any kind of
 	 * traversal. Return true to exit traversal after visiting a
@@ -20,5 +20,5 @@ public interface BinaryTreeNodeVisitor {
 	 * @param node
 	 * @return true to exit traversal, false to continue traversal
 	 */
-	boolean visit(BinaryTreeNode node);
+	boolean visit(BinarySearchTreeNode node);
 }

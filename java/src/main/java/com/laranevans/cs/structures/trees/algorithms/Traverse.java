@@ -3,7 +3,7 @@ package com.laranevans.cs.structures.trees.algorithms;
 
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
 import com.laranevans.cs.structures.trees.BinaryTreeNode;
-import com.laranevans.cs.structures.trees.BinaryTreeNodeVisitor;
+import com.laranevans.cs.structures.trees.BinarySearchTreeNodeVisitor;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -22,16 +22,16 @@ public class Traverse {
 	 * @param visitor
 	 * @return
 	 */
-	public static BinaryTreeNode preOrder(BinaryTreeNode root, BinaryTreeNodeVisitor visitor) {
+	public static <V extends Comparable> BinarySearchTreeNode<V> preOrder(BinarySearchTreeNode<V> root, BinarySearchTreeNodeVisitor visitor) {
 		if (root == null) {
 			return null;
 		}
 
-		Stack<BinaryTreeNode> stack = new Stack<>();
+		Stack<BinarySearchTreeNode<V>> stack = new Stack<>();
 		stack.push(root);
 
 		while(!stack.isEmpty()) {
-			BinaryTreeNode node = stack.pop();
+			BinarySearchTreeNode<V> node = stack.pop();
 			if (visitor.visit(node)) {
 				return node;
 			} else {
@@ -59,7 +59,7 @@ public class Traverse {
 	 * @param visitor
 	 * @return
 	 */
-	public static BinarySearchTreeNode inOrder(BinarySearchTreeNode root, BinaryTreeNodeVisitor visitor) {
+	public static <V extends Comparable> BinarySearchTreeNode inOrder(BinarySearchTreeNode<V> root, BinarySearchTreeNodeVisitor visitor) {
 		if (root == null) {
 			return null;
 		}
@@ -71,13 +71,13 @@ public class Traverse {
 
 			if(node != null) {
 				stack.push(node);
-				node = (BinarySearchTreeNode) node.getLeft();
+				node = node.getLeft();
 			} else {
 				node = stack.pop();
 				if (visitor.visit(node)) {
 					return node;
 				} else {
-					node = (BinarySearchTreeNode) node.getRight();
+					node = node.getRight();
 				}
 			}
 		}
@@ -92,19 +92,19 @@ public class Traverse {
 	 * @param visitor
 	 * @return
 	 */
-	public static BinaryTreeNode postOrder(BinaryTreeNode root, BinaryTreeNodeVisitor visitor) {
+	public static <V extends Comparable> BinarySearchTreeNode<V> postOrder(BinarySearchTreeNode<V> root, BinarySearchTreeNodeVisitor visitor) {
 		if (root == null) {
 			return null;
 		}
 
 		// I chose the two-stack solution because it's relatively easy to understand and code.
-		Stack<BinaryTreeNode> stackOne = new Stack<>();
-		Stack<BinaryTreeNode> stackTwo = new Stack<>();
+		Stack<BinarySearchTreeNode<V>> stackOne = new Stack<>();
+		Stack<BinarySearchTreeNode<V>> stackTwo = new Stack<>();
 
 		stackOne.push(root);
 
 		while(!stackOne.isEmpty()) {
-			BinaryTreeNode node = stackOne.pop();
+			BinarySearchTreeNode<V> node = stackOne.pop();
 			stackTwo.push(node);
 
 			if (node.getLeft() != null) {
@@ -116,7 +116,7 @@ public class Traverse {
 		}
 
 		while (!stackTwo.isEmpty()) {
-			BinaryTreeNode node = stackTwo.pop();
+			BinarySearchTreeNode<V> node = stackTwo.pop();
 			if (visitor.visit(node)) {
 				return node;
 			}
@@ -126,16 +126,16 @@ public class Traverse {
 	}
 
 	// Level-order (breadth-first) traversal
-	public static BinaryTreeNode levelOrder(BinaryTreeNode root, BinaryTreeNodeVisitor visitor) {
+	public static <V extends Comparable> BinarySearchTreeNode<V> levelOrder(BinarySearchTreeNode<V> root, BinarySearchTreeNodeVisitor visitor) {
 		if (root == null) {
 			return null;
 		}
 
-		Queue<BinaryTreeNode> q = new LinkedList<>();
+		Queue<BinarySearchTreeNode<V>> q = new LinkedList<>();
 		q.add(root);
 
 		while(!q.isEmpty()) {
-			BinaryTreeNode node = q.poll();
+			BinarySearchTreeNode<V> node = q.poll();
 			if (visitor.visit(node)) {
 				return node;
 			} else {

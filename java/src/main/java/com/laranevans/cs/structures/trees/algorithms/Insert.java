@@ -28,14 +28,14 @@ public class Insert {
 					node.setLeft(new BinarySearchTreeNode<>(value));
 					return true;
 				} else {
-					node = (BinarySearchTreeNode<V>) node.getLeft();
+					node = node.getLeft();
 				}
 			} else {
 				if (node.getRight() == null) {
 					node.setRight(new BinarySearchTreeNode<>(value));
 					return true;
 				} else {
-					node = (BinarySearchTreeNode<V>) node.getRight();
+					node = node.getRight();
 				}
 			}
 		}

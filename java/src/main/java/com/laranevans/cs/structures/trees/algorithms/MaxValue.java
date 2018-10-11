@@ -2,20 +2,19 @@
 package com.laranevans.cs.structures.trees.algorithms;
 
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
-import com.laranevans.cs.structures.trees.BinaryTreeNode;
 
 public class MaxValue {
 
-	public static <V extends Comparable> BinarySearchTreeNode<V> maximumValue(BinarySearchTreeNode<V> root) {
+	public static <V extends Comparable> BinarySearchTreeNode<V> maxValue(BinarySearchTreeNode<V> root) {
 		if (root == null) {
 			return null;
 		}
 
-		BinaryTreeNode node = root;
-		while(node.getRight() != null) {
+		BinarySearchTreeNode<V> node = root;
+		while (node.getRight() != null) {
 			node = node.getRight();
 		}
-		return (BinarySearchTreeNode<V>) node;
+		return node;
 	}
 
 }

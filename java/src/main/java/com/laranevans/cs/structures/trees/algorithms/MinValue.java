@@ -2,20 +2,19 @@
 package com.laranevans.cs.structures.trees.algorithms;
 
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
-import com.laranevans.cs.structures.trees.BinaryTreeNode;
 
 public class MinValue {
 
-	public static <V extends Comparable> BinarySearchTreeNode<V> minimumValue(BinarySearchTreeNode<V> root) {
+	public static <V extends Comparable> BinarySearchTreeNode<V> minValue(BinarySearchTreeNode<V> root) {
 		if (root == null) {
 			return null;
 		}
 
-		BinaryTreeNode node = root;
-		while(node.getLeft() != null) {
+		BinarySearchTreeNode<V> node = root;
+		while (node.getLeft() != null) {
 			node = node.getLeft();
 		}
-		return (BinarySearchTreeNode<V>) node;
+		return node;
 	}
 
 }

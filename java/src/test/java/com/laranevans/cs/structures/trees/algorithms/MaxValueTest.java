@@ -18,7 +18,7 @@ public class MaxValueTest {
 		Insert.insert(root, 25);
 		Insert.insert(root, 28);
 
-		BinarySearchTreeNode<Integer> node = MaxValue.maximumValue(root);
+		BinarySearchTreeNode<Integer> node = MaxValue.maxValue(root);
 		assertThat(node, is(notNullValue()));
 		assertThat(node.getValue(), is(equalTo(28)));
 	}
@@ -30,7 +30,7 @@ public class MaxValueTest {
 		Insert.insert(root, 5);
 		Insert.insert(root, 2);
 
-		BinarySearchTreeNode<Integer> node = MaxValue.maximumValue(root);
+		BinarySearchTreeNode<Integer> node = MaxValue.maxValue(root);
 		assertThat(node, is(notNullValue()));
 		assertThat(node.getValue(), is(equalTo(15)));
 	}

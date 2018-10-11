@@ -20,7 +20,7 @@ public class MinValueTest {
 		Insert.insert(root, 5);
 		Insert.insert(root, 2);
 
-		BinarySearchTreeNode<Integer> node = MinValue.minimumValue(root);
+		BinarySearchTreeNode<Integer> node = MinValue.minValue(root);
 		assertThat(node, is(notNullValue()));
 		assertThat(node.getValue(), is(equalTo(2)));
 	}
@@ -32,7 +32,7 @@ public class MinValueTest {
 		Insert.insert(root, 25);
 		Insert.insert(root, 22);
 
-		BinarySearchTreeNode<Integer> node = MinValue.minimumValue(root);
+		BinarySearchTreeNode<Integer> node = MinValue.minValue(root);
 		assertThat(node, is(notNullValue()));
 		assertThat(node.getValue(), is(equalTo(10)));
 	}
