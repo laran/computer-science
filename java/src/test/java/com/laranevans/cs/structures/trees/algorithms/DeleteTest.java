@@ -37,9 +37,28 @@ public class DeleteTest {
 	}
 
 	@Test
-	public void shouldNotDeleteValueAtRootNode() {
-		Assertions.assertThrows(
-			IllegalArgumentException.class, () -> Delete.delete(root, 10));
+	public void shouldDeleteValueAtRootNodeWithMinWithNoRightChild() {
+		Delete.delete(root, root.getValue());
+		assertThat(root.getValue(), is(equalTo(13)));
+		assertThat(root.getLeft().getValue(), is(equalTo(5)));
+		assertThat(root.getRight().getValue(), is(equalTo(15)));
+		assertThat(root.getRight().getLeft(), is(nullValue()));
+		assertThat(root.getRight().getRight().getValue(), is(equalTo(19)));
+	}
+
+	@Test
+	public void shouldDeleteValueAtRootNodeWithMinWithRightChild() {
+		Insert.insert(root, 14);
+		System.out.println("Altered Tree:");
+		TreePrinter.print(root);
+		Delete.delete(root, root.getValue());
+		assertThat(root.getValue(), is(equalTo(13)));
+		assertThat(root.getLeft().getValue(), is(equalTo(5)));
+		assertThat(root.getRight().getValue(), is(equalTo(15)));
+		assertThat(root.getRight().getLeft().getValue(), is(equalTo(14)));
+		assertThat(root.getRight().getLeft().getLeft(), is(nullValue()));
+		assertThat(root.getRight().getLeft().getRight(), is(nullValue()));
+		assertThat(root.getRight().getRight().getValue(), is(equalTo(19)));
 	}
 
 	@Test

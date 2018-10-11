@@ -5,40 +5,67 @@ import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
 
 public class Delete {
 
-	public static <V extends Comparable> BinarySearchTreeNode<V> delete(BinarySearchTreeNode<V> current, V value) {
-		// Recurse iteratively to the parent of the node to delete
-		BinarySearchTreeNode<V> parent = Search.search(current, value).getParent();
+	// Delete a value underneath a given root.
+	public static <V extends Comparable> BinarySearchTreeNode<V> delete(BinarySearchTreeNode<V> root, V value) {
+		// Recurse iteratively to the parent of the node to delete.
+		// This helps to reduce the size of the call stack when deleting values deep in a tree.
+		BinarySearchTreeNode<V> parent = Search.search(root, value).getParent();
+
+		// Special handling for when deleting the value at the root node itself.
 		if (parent == null) {
-			throw new IllegalArgumentException("Cannot delete the value at the root node");
+			// When the root has a right child, replace the value at the root with the minimum value in
+			// the right sub-tree
+			if (root.getRight() != null) {
+				BinarySearchTreeNode<V> min = MinValue.minValue(root.getRight());
+				if (min.getRight() != null) {
+					root.setValue(min.getValue());
+					min.getParent().setLeft(min.getRight());
+				} else {
+					root.setValue(min.getValue());
+					min.getParent().setLeft(null);
+				}
+				return root;
+			} else if (root.getLeft() != null) {
+				root.getLeft().setParent(null);
+				return root.getLeft();
+			} else {
+				// We're trying to delete a root node with no children.
+				// Can't set value to null, so nothing we can do.
+				return root;
+			}
 		}
-		return hibbard(parent, value);
+
+		// It isn't the root. Delete normally.
+		hibbard(parent, value);
+
+		return root;
 	}
 
 	// Hibbard's algorithm
-	private static <V extends Comparable> BinarySearchTreeNode<V> hibbard(BinarySearchTreeNode<V> current, V value) {
-		if (current == null || value == null) {
+	private static <V extends Comparable> BinarySearchTreeNode<V> hibbard(BinarySearchTreeNode<V> root, V value) {
+		if (root == null || value == null) {
 			return null;
 		}
 
-		int comparison = value.compareTo(current.getValue());
+		int comparison = value.compareTo(root.getValue());
 		if (comparison < 0) {
-			current.setLeft(hibbard(current.getLeft(), value));
+			root.setLeft(hibbard(root.getLeft(), value));
 		} else if (comparison > 0) {
-			current.setRight(hibbard(current.getRight(), value));
+			root.setRight(hibbard(root.getRight(), value));
 		} else {
-			if (current.getRight() == null) {
-				return current.getLeft();
-			} else if (current.getLeft() == null) {
-				return current.getRight();
+			if (root.getRight() == null) {
+				return root.getLeft();
+			} else if (root.getLeft() == null) {
+				return root.getRight();
 			}
 
-			BinarySearchTreeNode<V> temp = current;
-			current = MinValue.minValue(temp.getRight());
-			current.setRight(deleteMin(temp.getRight()));
-			current.setLeft(temp.getLeft());
+			BinarySearchTreeNode<V> temp = root;
+			root = MinValue.minValue(temp.getRight());
+			root.setRight(deleteMin(temp.getRight()));
+			root.setLeft(temp.getLeft());
 		}
 
-		return current;
+		return root;
 	}
 
 	private static <V extends Comparable> BinarySearchTreeNode<V> deleteMin(BinarySearchTreeNode<V> current) {
