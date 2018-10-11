@@ -4,7 +4,7 @@ package com.laranevans.cs.structures.trees.algorithms;
 import com.laranevans.cs.structures.trees.BinarySearchTreeNode;
 import com.laranevans.cs.structures.trees.BinaryTreeNode;
 
-public class MinimumValue {
+public class MinValue {
 
 	public static <V extends Comparable> BinarySearchTreeNode<V> minimumValue(BinarySearchTreeNode<V> root) {
 		if (root == null) {

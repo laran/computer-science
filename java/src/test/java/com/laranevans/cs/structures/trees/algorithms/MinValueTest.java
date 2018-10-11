@@ -10,8 +10,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
-@DisplayName("Minimum Value")
-public class MinimumValueTest {
+@DisplayName("Min Value")
+public class MinValueTest {
 
 	@Test
 	public void shouldFindMinimumValueAtLeaf() {
@@ -20,7 +20,7 @@ public class MinimumValueTest {
 		Insert.insert(root, 5);
 		Insert.insert(root, 2);
 
-		BinarySearchTreeNode<Integer> node = MinimumValue.minimumValue(root);
+		BinarySearchTreeNode<Integer> node = MinValue.minimumValue(root);
 		assertThat(node, is(notNullValue()));
 		assertThat(node.getValue(), is(equalTo(2)));
 	}
@@ -32,7 +32,7 @@ public class MinimumValueTest {
 		Insert.insert(root, 25);
 		Insert.insert(root, 22);
 
-		BinarySearchTreeNode<Integer> node = MinimumValue.minimumValue(root);
+		BinarySearchTreeNode<Integer> node = MinValue.minimumValue(root);
 		assertThat(node, is(notNullValue()));
 		assertThat(node.getValue(), is(equalTo(10)));
 	}
