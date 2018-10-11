@@ -4,7 +4,6 @@ package com.laranevans.cs.structures.lists.algorithms.sort;
 import com.laranevans.cs.structures.lists.ArrayHelper;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * Merge sort from the top-down.
@@ -22,7 +21,7 @@ public class MergeSortTopDown<V extends Comparable> extends BaseSortAlgorithm<V>
 	}
 
 	private void doSort(V[] a) {
-		if (Objects.isNull(a) || a.length < 2)
+		if (a == null || a.length < 2)
 			return;
 
 		// Split the list in half

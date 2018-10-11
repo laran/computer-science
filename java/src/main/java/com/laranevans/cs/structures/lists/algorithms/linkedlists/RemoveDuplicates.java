@@ -4,7 +4,6 @@ package com.laranevans.cs.structures.lists.algorithms.linkedlists;
 import com.laranevans.cs.structures.lists.SinglyLinkedListNode;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 public class RemoveDuplicates {
@@ -19,7 +18,7 @@ public class RemoveDuplicates {
 		SinglyLinkedListNode previous = head;
 		seen.add(previous.getValue());
 		SinglyLinkedListNode current = previous.getNext();
-		while (!Objects.isNull(current)) {
+		while (current != null) {
 			if (seen.contains(current.getValue())) {
 				previous.setNext(current.getNext()); // remove the duplicate by skipping over it
 				current = previous;

@@ -6,7 +6,6 @@ import com.laranevans.cs.structures.trees.BinaryTreeNode;
 import com.laranevans.cs.structures.trees.BinaryTreeNodeVisitor;
 
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Queue;
 import java.util.Stack;
 

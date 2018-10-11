@@ -3,8 +3,6 @@ package com.laranevans.cs.structures.lists.algorithms.linkedlists;
 
 import com.laranevans.cs.structures.lists.SinglyLinkedListNode;
 
-import java.util.Objects;
-
 public class Middle {
 
 	/**
@@ -26,14 +24,14 @@ public class Middle {
 		SinglyLinkedListNode laggingPointer = head;
 		int slowPointerIndex = 0;
 
-		while (!Objects.isNull(fastPointer) && !Objects.isNull(fastPointer.getNext())) {
+		while (fastPointer != null && fastPointer.getNext() != null) {
 			fastPointer = fastPointer.getNext().getNext();
 			laggingPointer = slowPointer;
 			slowPointer = slowPointer.getNext();
 			slowPointerIndex++;
 		}
 
-		if (Objects.isNull(fastPointer)) {
+		if (fastPointer == null) {
 			// even number of elements, return nodes before and after middle
 			return new Result(laggingPointer, slowPointer, slowPointerIndex);
 		}

@@ -3,8 +3,6 @@ package com.laranevans.cs.structures.lists.algorithms.linkedlists;
 
 import com.laranevans.cs.structures.lists.SinglyLinkedListNode;
 
-import java.util.Objects;
-
 /**
  * In order to check for a palindrome, we first need to be able
  * to find the middle of a linked list. See {@link Middle},
@@ -25,7 +23,7 @@ public class Palindrome {
 
 		SinglyLinkedListNode rightHead;
 
-		if(Objects.isNull(middle.getExactly())) {
+		if(middle.getExactly() == null) {
 			// List has an even number of Nodes
 			rightHead = middle.getAfter().getNode();
 		} else {
@@ -41,7 +39,7 @@ public class Palindrome {
 
 		// walk the left and right sides in sequence to check equality
 		boolean isAPalindrome = true;
-		while(!Objects.isNull(rightHead)) {
+		while(rightHead != null) {
 			if (!head.getValue().equals(rightHead.getValue())) {
 				isAPalindrome = false;
 				break;

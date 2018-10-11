@@ -3,7 +3,6 @@ package com.laranevans.cs.structures.graphs;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class GraphNode {
 
@@ -88,7 +87,7 @@ public class GraphNode {
 				node.edges.put(this.id, edge);
 			}
 
-			if (Objects.isNull(edge)) {
+			if (edge == null) {
 				edge = new GraphEdge(properties);
 				this.edges.put(node.id, edge);
 				node.edges.put(this.id, edge);

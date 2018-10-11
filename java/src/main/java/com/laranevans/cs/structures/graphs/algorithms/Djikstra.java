@@ -64,7 +64,7 @@ public class Djikstra {
 
 			for (String thatNodeId : thisNode.getEdges().keySet()) {
 				String distance = thisNode.getEdges().get(thatNodeId).getProperties().get(DISTANCE);
-				if (Objects.isNull(distance)) {
+				if (distance == null) {
 					throw new GraphException(String.format(
 						"GraphEdge from GraphNode with id=\"%s\" to GraphNode with id=\"%s\" has no \"distance\" attribute",
 						thisNodeId, thatNodeId));
@@ -112,7 +112,7 @@ public class Djikstra {
 
 		public Integer distanceTo(String nodeId) {
 			Integer distance = shortestDistances.get(nodeId);
-			if (Objects.isNull(distance)) {
+			if (distance == null) {
 				distance = Integer.MAX_VALUE;
 				shortestDistances.put(nodeId, distance);
 			}
@@ -131,7 +131,7 @@ public class Djikstra {
 		                                Integer distanceToThat) {
 			Integer totalDistance = startingDistance + distanceToThat;
 			Integer previousShortestDistance = shortestDistances.get(thatNodeId);
-			if (Objects.isNull(previousShortestDistance) || totalDistance < previousShortestDistance) {
+			if (previousShortestDistance == null || totalDistance < previousShortestDistance) {
 				shortestDistances.put(thatNodeId, totalDistance);
 				routes.put(thatNodeId, thisNodeId);
 			}

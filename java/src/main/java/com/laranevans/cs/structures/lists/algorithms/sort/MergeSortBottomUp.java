@@ -3,8 +3,6 @@ package com.laranevans.cs.structures.lists.algorithms.sort;
 
 import com.laranevans.cs.structures.lists.ArrayHelper;
 
-import java.util.Objects;
-
 /**
  * Merge sort from the bottom-up.
  *
@@ -14,7 +12,7 @@ public class MergeSortBottomUp<V extends Comparable> extends BaseSortAlgorithm<V
 
 	@Override
 	public void sort(V[] origin) {
-		if (Objects.isNull(origin))
+		if (origin == null)
 			return;
 
 		int n = origin.length;

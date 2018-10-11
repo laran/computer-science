@@ -4,7 +4,6 @@ package com.laranevans.cs.structures.graphs.algorithms;
 import com.laranevans.cs.structures.graphs.Graph;
 import com.laranevans.cs.structures.graphs.GraphNode;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeSet;
@@ -51,7 +50,7 @@ public class DepthFirst {
 		// If not, recurse to check all connected GraphNodes
 		for (String connectedNodeId : root.getEdges().keySet()) {
 			GraphNode match = searchRecursively(graph, graph.getNode(connectedNodeId), matcher, visitedNodes);
-			if (!Objects.isNull(match)) {
+			if (match != null) {
 				return match;
 			}
 		}

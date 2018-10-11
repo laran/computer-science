@@ -3,8 +3,6 @@ package com.laranevans.cs.structures.lists.algorithms.search;
 
 import com.laranevans.cs.algorithms.BaseAlgorithm;
 
-import java.util.Objects;
-
 /**
  * @param &lt;V&gt;
  */
@@ -15,7 +13,7 @@ public class BinarySearch<V extends Comparable> extends BaseAlgorithm<V> {
 	}
 
 	private int search(V[] a, V o, int lo, int hi) {
-		if (Objects.isNull(a)) {
+		if (a == null) {
 			throw new IllegalArgumentException("Cannot search a null array");
 		}
 

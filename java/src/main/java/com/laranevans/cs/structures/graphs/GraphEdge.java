@@ -3,7 +3,6 @@ package com.laranevans.cs.structures.graphs;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class GraphEdge {
@@ -24,7 +23,7 @@ public class GraphEdge {
 	protected void setProperties(Map<String, String> properties) {
 		// Synchronize on the map to support updates in undirected graphs (where the edge
 		// can be updated by either node)
-		if (Objects.isNull(properties)) {
+		if (properties == null) {
 			this.properties = null;
 		} else {
 			this.properties = properties;

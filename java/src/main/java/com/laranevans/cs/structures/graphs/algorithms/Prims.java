@@ -43,13 +43,13 @@ public class Prims {
 				// Ensure that both nodes are added to the MST.
 				// (Remember that all Nodes are added to the MST, but not all Edges)
 				GraphNode mstNode = mst.getNode(nodeId);
-				if (Objects.isNull(mstNode)) {
+				if (mstNode == null) {
 					mstNode = new GraphNode(nodeId);
 					mst.addNode(mstNode);
 				}
 
 				GraphNode mstNeighborNode = mst.getNode(nearestNeighborId);
-				if (Objects.isNull(mstNeighborNode)) {
+				if (mstNeighborNode == null) {
 					mstNeighborNode = new GraphNode(nearestNeighborId);
 					mst.addNode(mstNeighborNode);
 				}
