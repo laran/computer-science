@@ -1,6 +1,7 @@
 from cs.structures.trees.BinarySearchTreeNode import BinarySearchTreeNode
 from cs.structures.trees.algorithms.insert import insert
 
+
 def test_shouldHandleBasicInsert():
     root = BinarySearchTreeNode(10)
     assert insert(root, 15)
