@@ -4,10 +4,10 @@
   "description": "Implementations of various fundamental data-structure algorithms",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir build",
+    "build": "babel structures --out-dir build",
     "test": "jest --watchAll"
   },
-  "author": "Laran Evans <laran@laranevans.com> (http://www.laranevans.com/)",
+  "author": "Laran Evans <laran@laranevans.com> (https://www.laranevans.com/)",
   "license": "MIT",
   "jest": {
     "verbose": true,
@@ -20,6 +20,5 @@
     "yarn": "^1.9.4"
   },
   "dependencies": {
-    "@laran/readable-helpers": "^1.0.8"
   }
 }

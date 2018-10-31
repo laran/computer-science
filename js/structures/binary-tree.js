@@ -1,4 +1,6 @@
-import {isEqualTo, isUndefined} from '@laran/readable-helpers';
+const isUndefined = function(o) {
+	return typeof o === 'undefined';
+};
 
 export class Node {
 	constructor(value, left, right) {
@@ -72,7 +74,7 @@ export class Node {
 
 	dfs(evaluate, order, visit) {
 		if (!order) {
-			throw "order must be defined.";
+			throw new Error("order must be defined");
 		}
 
 		if (order === Node.Orders.PRE) {
@@ -82,7 +84,7 @@ export class Node {
 		} else if (order === Node.Orders.POST) {
 			return this.evaluatePostOrder(evaluate, visit);
 		} else {
-			throw "order was not recognized as a valid type (See: Node.Orders)";
+			throw new Error("order was not recognized as a valid type (See: Node.Orders)");
 		}
 	}
 
@@ -137,7 +139,7 @@ export default class BinaryTree {
 			node.value = value;
 		} else {
 			while (!isUndefined(node)) {
-				if (isEqualTo(value, node.value)) {
+				if (value === node.value) {
 					break; // short-circuit duplicate values
 				} else if (value < node.value) {
 					if (isUndefined(node.left)) {
@@ -162,7 +164,7 @@ export default class BinaryTree {
 	// https://en.wikipedia.org/wiki/Binary_tree#Deletion
 	remove(value) {
 		var scope = {
-			parents: {}, // A hashtable of parents for quick lookup later
+			parents: {},  // A hashtable of parents for quick lookup later
 			needle: value // The value of the node to delete
 		};
 
@@ -190,13 +192,13 @@ export default class BinaryTree {
 				toDelete.right = undefined;
 			} else if (!isUndefined(toDelete.left) && !isUndefined(toDelete.right)) {
 				// BOTH left and right children exist. Can't delete reliably.
-				throw "Cannot unambiguosly remove node with two children.";
+				throw new Error("Cannot unambiguosly remove node with two children");
 			} else {
 
 				// EITHER left OR right child exists. Re-parent the existing child.
 				if (isUndefined(parent.right)
 					|| !isUndefined(parent.left)
-					&& isEqualTo(parent.left.value, toDelete.value)) {
+					&& parent.left.value === toDelete.value) {
 
 					// toDelete is on the left side
 					if (isUndefined(toDelete.left)) {
@@ -205,7 +207,7 @@ export default class BinaryTree {
 						} else if (toDelete.right.value < parent.value) {
 							parent.left = toDelete.right;
 						} else {
-							throw "Cannot delete node: Cannot re-parent right child";
+							throw new Error("Cannot delete node: Cannot re-parent right child");
 						}
 					} else if (isUndefined(toDelete.right)) {
 						parent.left = toDelete.left;
@@ -219,7 +221,7 @@ export default class BinaryTree {
 						} else if (toDelete.left.value > parent.value) {
 							parent.right = toDelete.left;
 						} else {
-							throw "Cannot remove node: Cannot re-parent left child";
+							throw new Error("Cannot remove node: Cannot re-parent left child");
 						}
 					} else if (isUndefined(toDelete.left)) {
 						parent.right = toDelete.right;
